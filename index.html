@@ -652,7 +652,7 @@ form input:focus {
     background: transparent;
     border: none;
     color: #fff;
-    width: 200px;
+    width: 80px;
     padding: 5px;
     font-size: 14px;
     outline: none;
@@ -849,13 +849,13 @@ form input:focus {
 
 :root {
     --primary-color: hsla(286, 92%, 14%, 0.658);
-    --text-color: #ffffff;
-    --secondary-text: rgba(255, 255, 255, 0.7);
-    --overlay-color: rgba(0, 0, 0, 0.5);
+    --text-color: #333;
+    --secondary-text: #333;
+    --overlay-color: #333;
 }
 
 .profile-container {
-    background: var(--primary-color);
+    background: #ffffff;
     min-height: 100vh;
     color: var(--text-color);
 }
@@ -906,7 +906,17 @@ form input:focus {
     border-radius: 50%;
     position: relative;
     overflow: hidden;
+    border: 3px solid #000;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
+
+/* For retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .image-container {
+        border-width: 2px;
+    }
+}
+
 
 .image-container img {
     width: 100%;
@@ -914,26 +924,86 @@ form input:focus {
     object-fit: cover;
 }
 
+.image-container {
+    cursor: pointer;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Full Screen Image Modal */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.image-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-image {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.image-modal.active .modal-image {
+    transform: scale(1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+    z-index: 1001;
+}
+
+
 .image-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 40%;
-    background: linear-gradient(transparent, var(--overlay-color));
+    background: white;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     opacity: 0;
     transition: opacity 0.3s;
 }
-
+    
 .image-container:hover .image-overlay {
     opacity: 1;
 }
 
 .upload-trigger {
-    color: var(--text-color);
+    color: #333;
     font-size: 20px;
     cursor: pointer;
     padding: 10px;
@@ -942,39 +1012,119 @@ form input:focus {
 /* User Info Styles */
 .user-info {
     text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.user-id-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 8px;
 }
 
 .user-id {
-    color: var(--secondary-text);
-    font-size: 14px;
-    margin-bottom: 5px;
+    color: #333;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+    background: #333;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.edit-id {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 6px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.edit-id:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(15deg);
 }
 
 .display-name {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     justify-content: center;
+    margin: 15px 0;
+    margin-top: -50px;
 }
 
 .display-name h2 {
-    margin: 0;
-    font-size: 24px;
+    margin-top: -30px;
+    font-size: 28px;
+    font-weight: 600;
+    background: #333;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 .edit-name {
-    background: none;
+    background: rgba(255, 255, 255, 0.1);
     border: none;
     color: var(--text-color);
     cursor: pointer;
     font-size: 18px;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    margin-top: -30px;
 }
+
+.edit-name:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(15deg);
+}
+
+
+.header-demarcation {
+    width: 100%;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+}
+
+.demarcation-line {
+    width: 100px;
+    height: 1px;
+    background: #dacfcf;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+/* Interactive State */
+.demarcation-line:active {
+    width: 50px;
+}
+
+/* For Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .demarcation-line {
+        background: rgba(255, 255, 255, 0.2);
+    }
+}
+
 
 /* Stats Styles */
 .stats-container {
     display: flex;
-    gap: 40px;
-    margin-top: 20px;
+    gap: 50px;
+    margin-top: -30px;
+    padding: 15px;
+   backdrop-filter: blur(10px);
 }
 
 .stat-box {
@@ -982,38 +1132,94 @@ form input:focus {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 10px 15px;
 }
 
-.stat-value {
-    font-size: 18px;
-    font-weight: bold;
+.stat-box:hover {
+    transform: translateY(-3px);
 }
+.stat-value {
+    font-size: 22px;
+    font-weight: 700;
+    background:  #333;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.stat-value:hover {
+    transform: scale(1.1);
+    background: #333;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Animation for value changes */
+@keyframes numberPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.stat-value.updating {
+    animation: numberPop 0.3s ease;
+}
+
 
 .stat-label {
     color: var(--secondary-text);
     font-size: 14px;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Animations */
+@keyframes statPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.stat-box:active .stat-value {
+    animation: statPulse 0.3s ease;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .image-container {
-        width: 100px;
-        height: 100px;
+    .stats-container {
+        gap: 35px;
+        padding: 12px;
     }
     
-    .stats-container {
-        gap: 30px;
+    .stat-value {
+        font-size: 20px;
+    }
+    
+    .display-name h2 {
+        font-size: 24px;
     }
 }
 
 @media (max-width: 480px) {
-    .image-container {
-        width: 90px;
-        height: 90px;
+    .stats-container {
+        gap: 25px;
+        padding: 10px;
     }
     
-    .stats-container {
-        gap: 20px;
+    .stat-value {
+        font-size: 18px;
+    }
+    
+    .display-name h2 {
+        font-size: 22px;
+    }
+    
+    .user-id {
+        font-size: 14px;
     }
 }
 
@@ -1135,31 +1341,32 @@ form input:focus {
     animation: loading 1.5s infinite;
 }
 
-/* Interaction Buttons */
+/* Base styles */
 .interaction-buttons {
     position: absolute;
     right: 16px;
-    bottom: 150px;
+    bottom: 14%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    z-index: 10;
+    gap: 10px;
+    z-index: 20;
+    padding-right: 10px;
 }
 
 .interaction-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     background: transparent;
     border: none;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    width: 65px;
 }
 
 .btn-icon {
-    width: 48px;
-    height: 48px;
+    width: 45px;
+    height: 45px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     display: flex;
@@ -1168,15 +1375,122 @@ form input:focus {
 }
 
 .btn-icon i {
+    font-size: 20px;
     color: #fff;
-    font-size: 24px;
 }
 
 .interaction-count {
     color: #fff;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
 }
+
+/* Active States */
+.like-btn.active .btn-icon i,
+.like-btn.active {
+    color: #ff0000;
+}
+
+.repost-btn.active .btn-icon i,
+.repost-btn.active {
+    color: #00ff00;
+}
+
+/* Large Screens (Laptops & Desktops) */
+@media screen and (min-width: 1024px) {
+    .interaction-buttons {
+        right: 20px;
+        bottom: 16%;
+        gap: 12px;
+    }
+
+    .btn-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .btn-icon i {
+        font-size: 22px;
+    }
+}
+
+/* Tablets & iPads */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .interaction-buttons {
+        right: 18px;
+        bottom: 15%;
+    }
+
+    .interaction-btn {
+        width: 60px;
+    }
+}
+
+/* Large Phones */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+    .interaction-buttons {
+        right: 15px;
+        bottom: 13%;
+        gap: 8px;
+    }
+
+    .btn-icon {
+        width: 42px;
+        height: 42px;
+    }
+}
+
+/* Small Phones */
+@media screen and (max-width: 479px) {
+    .interaction-buttons {
+        right: 12px;
+        bottom: 12%;
+        gap: 6px;
+    }
+
+    .interaction-btn {
+        width: 55px;
+    }
+
+    .btn-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .btn-icon i {
+        font-size: 18px;
+    }
+
+    .interaction-count {
+        font-size: 12px;
+    }
+}
+
+/* iPhone SE and smaller devices */
+@media screen and (max-width: 375px) {
+    .interaction-buttons {
+        right: 10px;
+        bottom: 10%;
+    }
+
+    .btn-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .btn-icon i {
+        font-size: 16px;
+    }
+}
+
+/* For devices in landscape mode */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .interaction-buttons {
+        bottom: 20%;
+    }
+}
+
+
 .post-info {
     position: absolute;
     bottom: 0;
@@ -1184,8 +1498,9 @@ form input:focus {
     right: 0;
     padding: 20px;
     background: linear-gradient(transparent, rgba(0,0,0,0.9));
-    z-index: 10;
+    z-index: 10; /* Lower z-index */
 }
+
 
 .user-profile {
     display: flex;
@@ -1207,17 +1522,6 @@ form input:focus {
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #fff;
-}
-
-.online-indicator {
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-    width: 12px;
-    height: 12px;
-    background: #4CAF50;
-    border-radius: 50%;
-    border: 2px solid #000;
 }
 
 .user-details {
@@ -1287,21 +1591,6 @@ form input:focus {
 }
 
 
-.follow-btn {
-    background: #ff0000;
-    color: #fff;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.follow-btn:hover {
-    background: #cc0000;
-    transform: translateY(-1px);
-}
 
 .caption-text {
     position: relative;
@@ -1348,49 +1637,37 @@ form input:focus {
 
 .caption-controls {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-top: 8px;
+    gap: 12px; /* Reduced gap between see-more and actions */
+    margin-top: 4px;
 }
 
 .see-more-btn {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px; /* Reduced internal gap */
     background: none;
     border: none;
     color: #fff;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    padding: 6px 12px;
+    padding: 4px 8px; /* Reduced padding */
     border-radius: 15px;
     transition: all 0.3s ease;
 }
 
-.see-more-btn:hover {
-    background: rgba(255,255,255,0.1);
-}
-
-.see-more-btn i {
-    transition: transform 0.3s ease;
-}
-
-.caption-wrapper.expanded + .caption-controls .see-more-btn i {
-    transform: rotate(180deg);
-}
-
 .caption-actions {
     display: flex;
-    gap: 8px;
+    gap: 4px; /* Reduced gap between action buttons */
 }
 
 .action-btn {
     background: rgba(255,255,255,0.1);
     border: none;
     color: #fff;
-    width: 32px;
-    height: 32px;
+    width: 28px; /* Slightly smaller size */
+    height: 28px; /* Slightly smaller size */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1398,6 +1675,7 @@ form input:focus {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
 
 .action-btn:hover {
     background: rgba(255,255,255,0.2);
@@ -1596,10 +1874,7 @@ form input:focus {
         font-size: 15px;
     }
     
-    .follow-btn {
-        padding: 6px 15px;
-        font-size: 13px;
-    }
+    
 }
 
 @media screen and (max-height: 600px) {
@@ -1670,29 +1945,38 @@ form input:focus {
     animation: countUpdate 0.3s ease;
 }
 
+
+/* Audio Interface */
 .audio-interface {
     position: absolute;
-    bottom: 30%;
-    left: 15px;
+    bottom: 1%;
+    right: 25px;
     z-index: 10;
     max-width: 250px;
-    transform: translateY(50%);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .audio-info {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--overlay-dark);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     padding: 8px 12px;
     border-radius: 30px;
+    transition: transform 0.2s ease;
+}
+
+.audio-info:active {
+    transform: scale(0.98);
 }
 
 .audio-icon {
     width: 30px;
     height: 30px;
-    background: #ff0000;
+    background: var(--primary-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1700,7 +1984,7 @@ form input:focus {
 }
 
 .audio-icon i {
-    color: #fff;
+    color: var(--text-primary);
     font-size: 16px;
 }
 
@@ -1715,21 +1999,21 @@ form input:focus {
     margin-bottom: 4px;
 }
 
-.song-name {
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
+.song-name, .artist-name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+.song-name {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+}
+
 .artist-name {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
     font-size: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .audio-visualizer {
@@ -1741,7 +2025,7 @@ form input:focus {
 
 .bar {
     width: 3px;
-    background: #ff0000;
+    background: var(--primary-color);
     border-radius: 3px;
     animation: soundBars 1.2s ease infinite;
 }
@@ -1752,39 +2036,1041 @@ form input:focus {
 .bar:nth-child(4) { height: 55%; animation-delay: 0.8s; }
 .bar:nth-child(5) { height: 45%; animation-delay: 1s; }
 
+/* Sound Details Page */
+.sound-details-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--background-dark);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: var(--transition-standard);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.sound-details-page.active {
+    transform: translateX(0);
+}
+
+.sound-header {
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    background: var(--background-dark);
+    z-index: 10;
+}
+
+.back-btn, .bookmark-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+    transition: var(--transition-standard);
+}
+
+.back-btn:active, .bookmark-btn:active {
+    transform: scale(0.9);
+}
+
+.sound-info {
+    flex: 1;
+    display: flex;
+    gap: 15px;
+}
+
+.sound-cover {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sound-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--overlay-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--text-primary);
+}
+
+.sound-text {
+    flex: 1;
+    color: var(--text-primary);
+}
+
+.sound-text h2 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+}
+
+.sound-text p {
+    margin: 0 0 4px 0;
+    color: var(--text-secondary);
+}
+
+.usage-count {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.sound-actions {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.use-sound-btn {
+    width: 100%;
+    background: var(--primary-color);
+    color: var(--text-primary);
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: var(--transition-standard);
+}
+
+.use-sound-btn:active {
+    transform: scale(0.98);
+    background: #e60000;
+}
+
+/* Leaderboard Styles */
+.sound-leaderboard {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.leaderboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.leaderboard-filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition-standard);
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.leaderboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.leaderboard-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+}
+/* Core Variables */
+:root {
+    --primary-color: #ff0000;
+    --secondary-color: #2196F3;
+    --gold: #FFD700;
+    --silver: #C0C0C0;
+    --bronze: #CD7F32;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --background-dark: #000000;
+    --overlay-dark: rgba(0, 0, 0, 0.7);
+    --transition-standard: all 0.3s ease;
+}
+
+/* Top Creators Section */
+.sound-info-wrapper {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+}
+
+.top-creators {
+    flex: 1;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.creators-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.creators-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 16px;
+}
+
+
+.creators-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.creator-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    position: relative;
+}
+
+.creator-card img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.creator-card .rank {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.creator-card.first .rank {
+    background: var(--gold);
+    color: var(--background-dark);
+}
+
+.creator-card.second .rank {
+    background: var(--silver);
+    color: var(--background-dark);
+}
+
+.creator-card.third .rank {
+    background: var(--bronze);
+    color: var(--background-dark);
+}
+
+.creator-info {
+    margin-left: 12px;
+    flex: 1;
+}
+
+.username {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.verified {
+    color: var(--secondary-color);
+    margin-left: 4px;
+    font-size: 14px;
+}
+
+.views {
+    color: var(--text-secondary);
+    font-size: 12px;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Leaderboard Modal */
+.leaderboard-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--background-dark);
+    z-index: 1100;
+    display: none;
+    flex-direction: column;
+}
+
+.leaderboard-modal.active {
+    display: flex;
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.search-section {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-bottom: 15px;
+}
+
+.search-bar input {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    width: 100%;
+    margin-left: 10px;
+    outline: none;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.leaderboard-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.leaderboard-entry {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.your-position {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.position-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .sound-info-wrapper {
+        flex-direction: column;
+    }
+
+    .top-creators {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .creators-list {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+
+    .creator-card {
+        min-width: 200px;
+    }
+
+    .search-section {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .creator-card {
+        min-width: 150px;
+    }
+
+    .modal-header {
+        padding: 15px;
+    }
+
+    .filter-tabs {
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .filter-btn {
+        white-space: nowrap;
+    }
+}
+
+/* Custom Scrollbar */
+.creators-list::-webkit-scrollbar,
+.leaderboard-list::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+}
+
+.creators-list::-webkit-scrollbar-thumb,
+.leaderboard-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.leaderboard-modal.active {
+    animation: slideIn 0.3s ease;
+}
+
+.rank-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--overlay-dark);
+    color: var(--text-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.top-position {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.top-position .rank-badge {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+}
+
+/* Posts Grid */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    padding: 2px;
+}
+
+.post-thumbnail {
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+    background: #111;
+}
+
+.post-thumbnail video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-stats {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Animations */
 @keyframes soundBars {
     0%, 100% { transform: scaleY(1); }
     50% { transform: scaleY(0.5); }
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .audio-interface {
-        bottom: 100px;
-        left: 10px;
-        max-width: 200px;
-    }
-    
-    .audio-icon {
-        width: 25px;
-        height: 25px;
+
+
+/* Media Queries */
+@media screen and (min-width: 1024px) {
+    .sound-cover {
+        width: 150px;
+        height: 150px;
     }
 }
 
-/* For mobile optimization */
 @media screen and (max-width: 768px) {
-    .audio-interface {
-        bottom: 35%;
-        left: 12px;
-        max-width: 220px;
+    .leaderboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .sound-cover {
+        width: 100px;
+        height: 100px;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .audio-interface {
-        bottom: 32%;
-        left: 10px;
-        max-width: 200px;
+    .sound-header {
+        padding: 15px;
+    }
+    
+    .sound-cover {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .leaderboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .top-position {
+        grid-column: auto;
+        grid-row: auto;
+    }
+    
+    .filter-btn {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+}
+
+
+
+.repost-banner {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    right: 0;
+     padding: 8px 15px;
+    z-index: 15;
+}
+
+.repost-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+}
+
+.repost-info i {
+    font-size: 14px;
+}
+
+.repost-user {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.repost-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.repost-username {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.verified-badge {
+    color: #2196F3;
+    font-size: 14px;
+}
+
+.repost-text {
+    color: rgba(255,255,255,0.8);
+    font-size: 14px;
+}
+
+.repost-list-modal {
+    position: fixed;
+    bottom: 30%;
+    left: 0;
+    right: 0;
+    background: #000;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    z-index: 1000;
+    max-height: 70vh;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.repost-list-modal.active {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.modal-header h3 {
+    color: #fff;
+    margin: 0;
+    font-size: 16px;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.reposters-container {
+    padding: 15px;
+    overflow-y: auto;
+    max-height: calc(70vh - 60px);
+}
+
+.reposter-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.reposter-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.reposter-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.reposter-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.reposter-name-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.reposter-name {
+    color: #fff;
+    font-weight: 600;
+}
+
+.reposter-followers {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+}
+
+
+
+/* Custom Scrollbar */
+.reposters-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.reposters-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.reposters-container::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2);
+    border-radius: 3px;
+}
+
+.repost-count-trigger {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 15px;
+    transition: all 0.2s ease;
+}
+
+.repost-count-trigger:active {
+    transform: scale(0.95);
+   }
+
+.repost-count-trigger i {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: transform 0.2s ease;
+}
+
+.repost-count-trigger:active i {
+    transform: translateX(2px);
+}
+
+
+
+.follow-btn .following-text,
+.follow-btn .unfollow-text {
+    display: none;
+}
+
+.follow-btn.active {
+    background: transparent;
+    color: #ff0000;
+}
+
+.follow-btn.active .follow-text {
+    display: none;
+}
+
+.follow-btn.active .following-text {
+    display: inline-block;
+}
+
+.follow-btn.active:hover {
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.follow-btn.active:hover .following-text {
+    display: none;
+}
+
+.follow-btn.active:hover .unfollow-text {
+    display: inline-block;
+    color: #ff0000;
+}
+
+.follow-btn:active {
+    transform: scale(0.95);
+}
+
+.priority-user {
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.priority-user .reposter-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.priority-user .reposter-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #2196F3;
+}
+
+.priority-user .reposter-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.priority-user .verified-badge {
+    color: #2196F3;
+    font-size: 16px;
+    margin-left: 4px;
+}
+
+.priority-user {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    margin-left: 8px;
+}
+
+.priority-user  {
+    background: #636464;
+    padding: 8px 20px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.priority-user .hover {
+    background: #1976D2;
+}
+
+
+.follower-count {
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    margin-left: 6px;
+}
+
+.verified-badge {
+    color: #2196F3;
+}
+
+/* Sorting animation */
+.reposter-item {
+    transition: transform 0.3s ease;
+}
+
+.priority-user {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+@keyframes clickPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.repost-count-trigger.clicked {
+    animation: clickPulse 0.3s ease;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .reposter-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .follow-btn {
+        padding: 6px 16px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .modal-header h3 {
+        font-size: 15px;
+    }
+
+    .reposter-name {
+        font-size: 14px;
+    }
+
+    .reposter-followers {
+        font-size: 12px;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .repost-banner {
+        padding: 6px 12px;
+    }
+    
+    .repost-username, 
+    .repost-text {
+        font-size: 12px;
+    }
+}
+
+   
+.subscribe-btn[data-subscription-status="true"] {
+    background: #4CAF50;
+}
+
+.subscription-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #4CAF50;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* Modal Styles */
+.subscription-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: 90%;
+    max-width: 400px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.subscription-modal.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+    color: #fff;
+    margin: 0;
+}
+
+.creator-details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+.creator-details img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.price-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.price {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.period {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+.duration-selector {
+    padding: 20px;
+    display: grid;
+    gap: 10px;
+}
+
+.duration-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.duration-option.selected {
+    background: #ff0000;
+}
+
+.wallet-info {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 0 20px;
+    border-radius: 10px;
+}
+
+.confirm-subscription {
+    width: calc(100% - 40px);
+    margin: 20px;
+    padding: 15px;
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.confirm-subscription:hover {
+    background: #cc0000;
+}
+
+/* Animation */
+@keyframes modalPop {
+    0% {
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 480px) {
+    .subscription-modal {
+        width: 95%;
+    }
+    
+    .price {
+        font-size: 20px;
     }
 }
 
@@ -1951,6 +3237,8 @@ form input:focus {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 3px;
 }
+
+
 .share-menu {
     position: fixed;
     bottom: 0;
@@ -2030,6 +3318,156 @@ form input:focus {
     font-size: 12px;
     text-align: center;
 }
+/* Friends Share Styles */
+.friends {
+    background: #8e44ad;
+}
+
+.friends-share-modal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    z-index: 1100;
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.friends-share-modal.active {
+    transform: translateY(0);
+}
+
+.friends-search {
+    position: relative;
+    margin: 15px 0;
+}
+
+.friends-search input {
+    width: 100%;
+    padding: 12px 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.friends-search i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.friends-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.friends-container {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding: 10px 0;
+}
+
+.friends-container::-webkit-scrollbar {
+    display: none;
+}
+
+.friend-item {
+    position: relative;
+    width: 70px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.friend-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.friend-item.selected .friend-avatar {
+    border-color: #ff0000;
+    transform: scale(1.1);
+}
+
+.friend-name {
+    color: #fff;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.selected-count {
+    color: #fff;
+    font-size: 14px;
+}
+
+.share-with-friends-btn {
+    width: 100%;
+    padding: 15px;
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.share-with-friends-btn:disabled {
+    background: #666;
+    cursor: not-allowed;
+}
+
+@media screen and (max-width: 480px) {
+    .friends-carousel {
+        gap: 10px;
+    }
+
+    .friend-item {
+        width: 60px;
+    }
+
+    .friend-avatar {
+        width: 50px;
+        height: 50px;
+    }
+}
 
 /* Platform-specific colors */
 .whatsapp { background: #25D366; }
@@ -2070,6 +3508,504 @@ form input:focus {
 
 .share-menu.active {
     animation: slideUp 0.3s ease forwards;
+}
+
+
+/* Tweet Tab Container */
+.tweet-tab-container {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: #fff;
+}
+
+
+
+
+/* Tweet Feed */
+.tweet-feed {
+    padding: 15px;
+}
+
+/* Tweet Post */
+.tweet-post {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+/* User Section */
+.user-section {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.user-avatar {
+    position: relative;
+    margin-right: 12px;
+}
+
+.user-avatar img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+
+.user-info {
+    flex: 1;
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.username {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.follower-count {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.follow-btn {
+    background: #8A2BE2;
+    color: #fff;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.follow-btn:hover {
+    background: #7B1FA2;
+}
+
+/* Post Content */
+.post-content {
+    margin-bottom: 15px;
+}
+
+.post-text {
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0 0 10px 0;
+}
+
+.see-more {
+    background: none;
+    border: none;
+    color: #edebee;
+    padding: 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Media Container */
+.media-container {
+    margin: 10px 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.media-container img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+/* Poll Container */
+.poll-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.poll-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.poll-option {
+    position: relative;
+    padding: 10px;
+}
+
+.progress-bar {
+    position: absolute;
+    inset: 0;
+    background: rgba(138, 43, 226, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.progress {
+    height: 100%;
+    background: rgba(138, 43, 226, 0.2);
+    transition: width 0.3s ease;
+}
+
+.option-text, .percentage {
+    position: relative;
+    z-index: 2;
+}
+
+.poll-info {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+
+/* Post Footer */
+.post-footer {
+    margin-top: 15px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.dot-separator {
+    margin: 0 8px;
+}
+
+.tweet-interaction-buttons {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.tweet-button-group {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tweet-button-group button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tweet-repost-banner {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tweet-repost-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tweet-repost-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tweet-repost-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.tweet-verified-badge {
+    color: #8A2BE2;
+    font-size: 14px;
+}
+
+.tweet-repost-list-modal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+    border-radius: 20px 20px 0 0;
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.tweet-repost-list-modal.active {
+    transform: translateY(0);
+}
+
+.tweet-modal-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tweet-reposters-container {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.tweet-reposter-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tweet-priority-user {
+    background: rgba(138, 43, 226, 0.1);
+}
+
+.tweet-follow-btn {
+    background: #8A2BE2;
+    border: none;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tweet-following-text,
+.tweet-unfollow-text {
+    display: none;
+}
+
+.tweet-follow-btn.following .tweet-follow-text {
+    display: none;
+}
+
+.tweet-follow-btn.following .tweet-following-text {
+    display: inline;
+}
+
+.tweet-follow-btn:hover.following .tweet-following-text {
+    display: none;
+}
+
+.tweet-follow-btn:hover.following .tweet-unfollow-text {
+    display: inline;
+    color: #ff3b30;
+}
+.tweet-like-btn {
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.tweet-like-btn.liked i {
+    color: #ff3b30;
+    animation: likeAnimation 0.3s ease forwards;
+}
+
+@keyframes likeAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+} 
+/* Repost Button Styles */
+.tweet-repost-btn {
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.tweet-repost-btn.reposted i {
+    color: #4CAF50;
+    animation: repostAnimation 0.3s ease forwards;
+}
+
+
+@keyframes repostAnimation {
+    0% { transform: scale(1) rotate(0); }
+    50% { transform: scale(1.2) rotate(180deg); }
+    100% { transform: scale(1) rotate(360deg); }
+}
+
+/* Save Button Styles */
+.tweet-save-btn {
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.tweet-save-btn.saved i {
+    color: #FFD700;
+    animation: saveAnimation 0.3s ease forwards;
+}
+
+@keyframes saveAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.tweet-comment-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80vh;
+    background: #000;
+    border-radius: 20px 20px 0 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.tweet-comment-section.active {
+    transform: translateY(0);
+}
+
+.comment-header {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.original-post-preview {
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.comments-feed {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.comment-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.commenter-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.voice-note-player {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 8px;
+}
+
+.comment-input-section {
+    padding: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.input-toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 8px 15px;
+}
+
+.input-wrapper input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #fff;
+}
+
+.voice-record, .send-comment {
+    background: none;
+    border: none;
+    color: #8A2BE2;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Animation for voice recording */
+@keyframes recordPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.voice-record.recording {
+    color: #ff3b30;
+    animation: recordPulse 1s infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .button-group {
+        justify-content: flex-start;
+    }
+    
+    .user-header {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tweet-post {
+        padding: 12px;
+    }
+    
+    .user-avatar img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .username {
+        font-size: 14px;
+    }
 }
 
     </style>
@@ -2230,6 +4166,7 @@ form input:focus {
             </div>
         </div>
     
+        
         <div class="content-container" id="posesContent">
             <div class="post-container">
                 <!-- Media Content -->
@@ -2242,20 +4179,73 @@ form input:focus {
         
                 <!-- Interaction Buttons -->
                 <div class="interaction-buttons">
-                    <button class="interaction-btn like-btn">
+                       <button class="interaction-btn like-btn" onclick="this.classList.toggle('active')">
+                            <div class="btn-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <span class="interaction-count">0</span>
+                        </button>
+                    
+                        <button class="interaction-btn Subscribe-btn">
                         <div class="btn-icon">
-                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-hand"></i>
                         </div>
-                        <span class="interaction-count">0</span>
+                        <span class="Subscribe"></span>
                     </button>
-        
-                    <button class="interaction-btn call-btn">
-                        <div class="btn-icon">
-                            <i class="fas fa-phone"></i>
+
+                    <div class="subscription-interface">
+                        
+                            <span class="subscribe-status"></span>
+                            <div class="subscription-badge" hidden>
+                                <span class="time-left">29D</span>
+                            </div>
+                        </button>
+                    
+                        <!-- Subscription Modal -->
+                        <div class="subscription-modal">
+                            <div class="modal-header">
+                                <h3>Subscribe to @username</h3>
+                                <button class="close-modal">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                    
+                            <div class="subscription-info">
+                                <div class="creator-details">
+                                    <img src="creator-avatar.jpg" alt="Creator">
+                                    <div class="price-info">
+                                        <span class="price">400 PAS</span>
+                                        <span class="period">per month</span>
+                                    </div>
+                                </div>
+                    
+                                <div class="duration-selector">
+                                    <div class="duration-option" data-months="1">
+                                        <span class="months">1 Month</span>
+                                        <span class="price">400 PAS</span>
+                                    </div>
+                                    <div class="duration-option" data-months="2">
+                                        <span class="months">2 Months</span>
+                                        <span class="price">800 PAS</span>
+                                    </div>
+                                    <div class="duration-option" data-months="3">
+                                        <span class="months">3 Months</span>
+                                        <span class="price">1200 PAS</span>
+                                    </div>
+                                </div>
+                    
+                                <div class="wallet-info">
+                                    <span>Your PAS Balance:</span>
+                                    <span class="balance">2000 PAS</span>
+                                </div>
+                    
+                                <button class="confirm-subscription">
+                                    Subscribe Now
+                                </button>
+                            </div>
                         </div>
-                        <span class="call-rate"></span>
-                    </button>
-        
+                    </div>
+                    
                     <button class="interaction-btn comment-btn">
                         <div class="btn-icon">
                             <i class="fas fa-comment"></i>
@@ -2263,11 +4253,11 @@ form input:focus {
                         <span class="interaction-count">0</span>
                     </button>
                     <div class="comments-section">
-                        <div class="comments-header">
-                            <h4>Comments (2.5K)</h4>
-                            <button class="close-comments">
+                        <div class="comment-header">
+                            <button class="close-comment">
                                 <i class="fas fa-times"></i>
                             </button>
+                            <h3>Comments</h3>
                         </div>
                     
                         <div class="comment-input-area">
@@ -2288,29 +4278,7 @@ form input:focus {
                             </div>
                         </div>
                     
-                        <div class="comments-container">
-                            <!-- Single Comment -->
-                            <div class="comment-item">
-                                <div class="comment-user-avatar">
-                                    <img src="commenter-avatar.jpg" alt="Commenter">
-                                </div>
-                                <div class="comment-content">
-                                    <div class="comment-user-info">
-                                        <span class="comment-username">Username</span>
-                                        <span class="comment-time">2h ago</span>
-                                    </div>
-                                    <p class="comment-text">This is a comment text</p>
-                                    <div class="comment-actions">
-                                        <button class="like-comment">
-                                            <i class="far fa-heart"></i>
-                                            <span>245</span>
-                                        </button>
-                                        <button class="reply-comment">Reply</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
                     
                     <button class="interaction-btn share-btn">
                         <div class="btn-icon">
@@ -2381,6 +4349,44 @@ form input:focus {
                                     </div>
                                     <span>Report</span>
                                 </div>
+                                <!-- Add this inside the share-section, after existing share items -->
+<div class="share-item friends-share">
+    <div class="share-icon friends">
+        <i class="fas fa-users"></i>
+    </div>
+    <span>Friends</span>
+</div>
+
+<!-- Add this new friends selection modal -->
+<div class="friends-share-modal">
+    <div class="modal-header">
+        <h4>Share with Friends</h4>
+        <div class="selected-count">0 selected</div>
+        <button class="close-friends-modal">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="friends-search">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search friends...">
+    </div>
+
+    <div class="friends-carousel">
+        <button class="nav-btn prev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="friends-container"></div>
+        
+        <button class="nav-btn next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <button class="share-with-friends-btn">Share</button>
+</div>
+
                             </div>
                         </div>
                     </div>
@@ -2391,13 +4397,15 @@ form input:focus {
                         </div>
                     </button>
         
-                    <button class="interaction-btn repost-btn">
+                    
+                    
+                    <button class="interaction-btn repost-btn" onclick="this.classList.toggle('active')">
                         <div class="btn-icon">
                             <i class="fas fa-retweet"></i>
                         </div>
                         <span class="interaction-count">0</span>
                     </button>
-        
+                    
                     <button class="interaction-btn gift-btn">
                         <div class="btn-icon">
                             <i class="fas fa-gift"></i>
@@ -2412,6 +4420,59 @@ form input:focus {
             <img loading="lazy">
             
         </div>
+        <div class="repost-banner">
+            <div class="repost-info">
+                <i class="fas fa-retweet"></i>
+                <div class="repost-user">
+                    <img src="user-avatar.jpg" alt="User" class="repost-avatar">
+                    <span class="repost-username">Username</span>
+                    <i class="fas fa-check-circle verified-badge"></i>
+                </div>
+                <span class="repost-text">reposted this</span>
+            </div>
+            <div class="repost-count-trigger" onclick="showRepostList()">
+                <span class="interaction-count">0</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            
+        </div>
+        <div class="repost-list-modal">
+            <div class="modal-header">
+                <h3>Reposted by</h3>
+                <button class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="reposters-container">
+                <!-- Verified/High Follower Users First -->
+    
+                <div class="reposter-item priority-user">
+     
+                    <div class="reposter-info">
+                        <img src="user-avatar.jpg" alt="User" class="reposter-avatar">
+                        <div class="reposter-details">
+                            <div class="reposter-name-wrapper">
+                                <span class="reposter-name">Username</span>
+                                <i class="fas fa-check-circle verified-badge"></i>
+                            </div>
+                            <span class="reposter-followers">1.2M Followers</span>
+                        </div>
+                    </div>
+                    <button class="follow-btn" onclick="toggleFollow(this)" data-user-id="123">
+                        <span class="follow-text">Follow</span>
+                        <span class="following-text">Following</span>
+                        <span class="unfollow-text">Unfollow</span>
+                    </button>
+                    
+                </div>
+            <!-- Regular Users -->
+    <div class="reposter-item">
+        <!-- Regular user structure remains the same -->
+    </div>
+            </div>
+        </div>
+        
         <div class="user-details">
             <div class="username-wrapper">
                 <h3 class="username">Username</h3>
@@ -2421,8 +4482,15 @@ form input:focus {
                 <span class="post-time">Time</span>
             </div>
               
-            <span class="followers">1000</span>
-            <button class="follow-btn">Follow</button>
+            <span class="follower-count">2.5M followers</span>
+                       
+            <button class="follow-btn" onclick="toggleFollow(this)">
+    <span class="follow-text">Follow</span>
+    <span class="following-text">Following</span>
+    <span class="unfollow-text">Unfollow</span>
+</button>
+
+             
         </div>
     </div>
     <div class="caption-container">
@@ -2436,6 +4504,7 @@ form input:focus {
                 <button class="see-more-btn">
                     <span class="btn-text">See more</span>
                     <i class="fas fa-chevron-down"></i>
+                
                 </button>
                 
                 <div class="caption-actions">
@@ -2445,9 +4514,7 @@ form input:focus {
                     <button class="action-btn text-to-speech">
                         <i class="fas fa-volume-up"></i>
                     </button>
-                    <button class="action-btn highlight-text">
-                        <i class="fas fa-highlighter"></i>
-                    </button>
+                    
                 </div>
             </div>
         </div>
@@ -2478,7 +4545,8 @@ form input:focus {
 </div>
 </div>
 </div>
-<div class="audio-interface">
+
+<div class="audio-interface" onclick="showSoundDetails()">
     <div class="audio-info">
         <div class="audio-icon">
             <i class="fas fa-music"></i>
@@ -2499,10 +4567,324 @@ form input:focus {
     </div>
 </div>
 
-</div>
-                    
-           
+<div class="sound-details-page">
+    <div class="sound-header">
+        <button class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+        </button>
         
+        <div class="sound-info-wrapper">
+            <div class="sound-info">
+                <div class="sound-cover">
+                    <img src="album-cover.jpg" alt="Sound Cover">
+                    <div class="play-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="sound-text">
+                    <h2>Original Sound</h2>
+                    <p>Artist Name</p>
+                    <span class="usage-count">1.2M posts</span>
+                </div>
+            </div>
+
+            <div class="top-creators">
+                <div class="creators-header">
+                    <h3>Top Creators</h3>
+                   </div>
+                
+                <div class="creators-list">
+                    <div class="creator-card first">
+                        <div class="rank">1</div>
+                        <img src="user1.jpg" alt="Top Creator">
+                        <div class="creator-info">
+                            <span class="username">@topCreator</span>
+                            <i class="fas fa-crown verified"></i>
+                            <span class="views">10.5M views</span>
+                        </div>
+                    </div>
+                    
+                    <div class="creator-card second">
+                        <div class="rank">2</div>
+                        <img src="user2.jpg" alt="Second Creator">
+                        <div class="creator-info">
+                            <span class="username">@creator2</span>
+                            <i class="fas fa-check-circle verified"></i>
+                            <span class="views">8.2M views</span>
+                        </div>
+                    </div>
+                    
+                    <div class="creator-card third">
+                        <div class="rank">3</div>
+                        <img src="user3.jpg" alt="Third Creator">
+                        <div class="creator-info">
+                            <span class="username">@creator3</span>
+                            <span class="views">6.7M views</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="bookmark-btn">
+            <i class="fas fa-bookmark"></i>
+        </button>
+    </div>
+
+
+    <div class="sound-actions">
+        <button class="use-sound-btn">
+            <i class="fas fa-plus"></i>
+            Use this sound
+        </button>
+    </div>
+
+    <div class="posts-grid">
+        <!-- Grid of posts using this sound -->
+        <div class="post-thumbnail">
+            <video src="post1.mp4"></video>
+            <div class="post-stats">
+                <i class="fas fa-play"></i>
+                <span>1.5M</span>
+            </div>
+        </div>
+        <!-- More post thumbnails -->
+    </div>
+</div>
+
+
+        
+</div>
+              
+<div class="tweet-tab-container">
+    
+
+    <!-- Tweet Feed -->
+    <div class="tweet-feed">
+        <!-- Single Tweet Post -->
+        <div class="tweet-post">
+            <div class="user-section">
+                <div class="user-avatar">
+                    <img src="user-avatar.jpg" alt="User">
+                    <div class="online-indicator"></div>
+                </div>
+                
+                <div class="user-info">
+                    <div class="user-header">
+                        <h3 class="username">@username</h3>
+                        <span class="follower-count">2.5M followers</span>
+                       <button class="follow-btn" onclick="toggleFollow(this)" data-user-id="123">
+                        <span class="follow-text">Follow</span>
+                        <span class="following-text">Following</span>
+                        <span class="unfollow-text">Unfollow</span>
+                    </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post-content">
+                <p class="post-text">This is the tweet content. For longer posts, it will show a see more option to expand the full text without covering the screen.</p>
+                <button class="see-more">See more</button>
+
+                <!-- Media Attachments -->
+                <div class="media-container">
+                    <img src="post-image.jpg" alt="Post media">
+                </div>
+
+                <!-- Poll if exists -->
+                <div class="poll-container">
+                    <div class="poll-options">
+                        <div class="poll-option">
+                            <span class="option-text">Option 1</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 65%"></div>
+                            </div>
+                            <span class="percentage">65%</span>
+                        </div>
+                        <div class="poll-option">
+                            <span class="option-text">Option 2</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 35%"></div>
+                            </div>
+                            <span class="percentage">35%</span>
+                        </div>
+                    </div>
+                    <span class="poll-info">2 days left • 1.2K votes</span>
+                </div>
+            </div>
+
+             
+            <div class="post-footer">
+                <span class="views">2.5M views</span>
+                <span class="dot-separator">•</span>
+                <span class="timestamp">2h ago</span>
+                
+                    
+                           
+         <div class="tweet-repost-banner">
+    <div class="tweet-repost-info">
+        <i class="fas fa-retweet"></i>
+        <div class="tweet-repost-user">
+            <img src="user-avatar.jpg" alt="User" class="tweet-repost-avatar">
+            <span class="tweet-repost-username">Username</span>
+            <i class="fas fa-check-circle tweet-verified-badge"></i>
+        </div>
+        <span class="tweet-repost-text">reposted this</span>
+    </div>
+    <div class="tweet-repost-count-trigger" onclick="showTweetRepostList()">
+        <span class="tweet-interaction-count">0</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+</div>
+
+<div class="tweet-repost-list-modal">
+    <div class="tweet-modal-header">
+        <h3>Reposted by</h3>
+        <button class="tweet-close-modal">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="tweet-reposters-container">
+        <div class="tweet-reposter-item tweet-priority-user">
+            <div class="tweet-reposter-info">
+                <img src="user-avatar.jpg" alt="User" class="tweet-reposter-avatar">
+                <div class="tweet-reposter-details">
+                    <div class="tweet-reposter-name-wrapper">
+                        <span class="tweet-reposter-name">Username</span>
+                        <i class="fas fa-check-circle tweet-verified-badge"></i>
+                    </div>
+                    <span class="tweet-reposter-followers">1.2M Followers</span>
+                </div>
+            </div>
+            <button class="tweet-follow-btn" onclick="toggleTweetFollow(this)" data-user-id="123">
+                <span class="tweet-follow-text">Follow</span>
+                <span class="tweet-following-text">Following</span>
+                <span class="tweet-unfollow-text">Unfollow</span>
+            </button>     
+        </div>
+
+        <div class="tweet-reposter-item">
+            <!-- Regular user structure with tweet- prefix -->
+        </div>
+    </div>
+</div>
+
+                    
+                     
+               
+                <div class="tweet-interaction-buttons">
+                    <div class="tweet-button-group">
+                        <button class="tweet-like-btn" onclick="handleLike(this)">
+                            <i class="fas fa-heart"></i>
+                            <span class="like-count">125K</span>
+                        </button>
+                        
+                        <button class="tweet-comment-btn">
+                            <i class="fas fa-comment"></i>
+                            <span>2.3K</span>
+                        </button>
+                        
+                        <button class="tweet-repost-btn" onclick="handleRepost(this)">
+                            <i class="fas fa-retweet"></i>
+                            <span class="repost-count">1.1K</span>
+                        </button>
+                        <button class="tweet-gift-btn">
+                            <i class="fas fa-gift"></i>
+                            <span>500</span>
+                        </button>
+                        <button class="tweet-share-btn">
+                            <i class="fas fa-share"></i>
+                        </button>
+                        <button class="tweet-save-btn" onclick="handleSave(this)">
+                            <i class="fas fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+        <!-- End Single Tweet Post -->
+    </div>
+</div>
+    
+<div class="tweet-comment-section">
+    <!-- Original Post Preview -->
+    <div class="comment-header">
+        <div class="original-post-preview">
+            <div class="post-author">
+                <img src="author-avatar.jpg" alt="Author">
+                <div class="author-info">
+                    <span class="author-name">Username</span>
+                    <span class="follower-count">1.2M followers</span>
+                </div>
+            </div>
+            <p class="post-preview-content">Original post content...</p>
+        </div>
+        <button class="close-comments">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Comments Feed -->
+    <div class="comments-feed">
+        <!-- Single Comment -->
+        <div class="comment-item">
+            <img src="commenter-avatar.jpg" alt="Commenter" class="commenter-avatar">
+            <div class="comment-content">
+                <div class="comment-header">
+                    <span class="commenter-name">@commenter</span>
+                    <span class="comment-time">2h ago</span>
+                </div>
+                <p class="comment-text">Comment text here...</p>
+                <!-- Voice Note if present -->
+                <div class="voice-note-player">
+                    <button class="play-voice-note">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="voice-waveform"></div>
+                    <span class="voice-duration">0:30</span>
+                </div>
+                <div class="comment-actions">
+                    <button class="comment-like">
+                        <i class="fas fa-heart"></i>
+                        <span>123</span>
+                    </button>
+                    <button class="comment-reply">
+                        <i class="fas fa-reply"></i>
+                        <span>Reply</span>
+                    </button>
+                    <button class="comment-gift">
+                        <i class="fas fa-gift"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comment Input -->
+    <div class="comment-input-section">
+        <div class="input-toolbar">
+            <button class="poll-btn">
+                <i class="fas fa-chart-bar"></i>
+            </button>
+            <button class="emoji-btn">
+                <i class="fas fa-smile"></i>
+            </button>
+        </div>
+        <div class="input-wrapper">
+            <input type="text" placeholder="Write your comment...">
+            <button class="voice-record">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <button class="send-comment">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
        
         <div class="bottom-navigation">
             <div class="nav-item" id="homeBtn">
@@ -2541,13 +4923,15 @@ form input:focus {
         </button>
         <h1>Profile</h1>
     </header>
-
+    <div class="header-demarcation">
+        <div class="demarcation-line"></div>
+    </div>
     <!-- Main Profile Content -->
     <main class="profile-content">
         <!-- Profile Image Section -->
         <div class="profile-image-section">
             <div class="image-container">
-                <img id="userImage" src="default-avatar.png" alt="Profile Picture">
+                <img id="userImage" src="default-avatar.png" alt="img">
                 <div class="image-overlay">
                     <label for="imageUpload" class="upload-trigger">
                         <i class="fas fa-camera"></i>
@@ -2557,16 +4941,23 @@ form input:focus {
             </div>
         </div>
 
-        <!-- User Info Section -->
-        <div class="user-info">
-            <div class="user-id">Pose123456</div>
-            <div class="display-name">
-                <h2 id="userName">Display Name</h2>
-                <button class="edit-name">
-                    <i class="fas fa-edit"></i>
-                </button>
-            </div>
-        </div>
+       <!-- User Info Section -->
+<div class="user-info">
+    <div class="user-id-container">
+        <div class="user-id">Pose123456</div>
+        <button class="edit-id">
+            <i class="fas fa-edit"></i>
+        </button>
+    </div>
+    
+    <div class="display-name">
+        <h2 id="userName">Display Name</h2>
+        <button class="edit-name">
+            <i class="fas fa-edit"></i>
+        </button>
+    </div>
+</div>
+
 
         <!-- Stats Section -->
         <div class="stats-container">
@@ -2581,6 +4972,14 @@ form input:focus {
             <div class="stat-box">
                 <span class="stat-value">0</span>
                 <span class="stat-label">Likes</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-value">0</span>
+                <span class="stat-label">Reposts</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-value">0</span>
+                <span class="stat-label">Subscribers</span>
             </div>
         </div>
     </main>
@@ -3043,8 +5442,570 @@ function addNewComment(text) {
 }
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const subscribeBtn = document.querySelector('.interaction-btn.Subscribe-btn');
+    
+    subscribeBtn.addEventListener('click', () => {
+        // Create and append modal dynamically
+        const modal = createSubscriptionModal();
+        document.body.appendChild(modal);
+        
+        // Show modal with animation
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 10);
+    });
+});
 
+function createSubscriptionModal() {
+    const modal = document.createElement('div');
+    modal.className = 'subscription-modal';
+    modal.innerHTML = `
+        <div class="modal-header">
+            <h3>Subscribe to @username</h3>
+            <button class="close-modal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
 
+        <div class="subscription-info">
+            <div class="creator-details">
+                <img src="creator-avatar.jpg" alt="Creator">
+                <div class="price-info">
+                    <span class="price">400 PAS</span>
+                    <span class="period">per month</span>
+                </div>
+            </div>
+
+            <div class="duration-selector">
+                <div class="duration-option" data-months="1">
+                    <span class="months">1 Month</span>
+                    <span class="price">400 PAS</span>
+                </div>
+                <div class="duration-option" data-months="2">
+                    <span class="months">2 Months</span>
+                    <span class="price">800 PAS</span>
+                </div>
+                <div class="duration-option" data-months="3">
+                    <span class="months">3 Months</span>
+                    <span class="price">1200 PAS</span>
+                </div>
+            </div>
+
+            <div class="wallet-info">
+                <span>Your PAS Balance:</span>
+                <span class="balance">2000 PAS</span>
+            </div>
+
+            <button class="confirm-subscription">
+                Subscribe Now
+            </button>
+        </div>
+    `;
+
+    // Add event listeners to modal elements
+    modal.querySelector('.close-modal').addEventListener('click', () => {
+        modal.classList.remove('active');
+        setTimeout(() => modal.remove(), 300);
+    });
+
+    modal.querySelectorAll('.duration-option').forEach(option => {
+        option.addEventListener('click', () => {
+            modal.querySelectorAll('.duration-option').forEach(opt => 
+                opt.classList.remove('selected'));
+            option.classList.add('selected');
+        });
+    });
+
+    modal.querySelector('.confirm-subscription').addEventListener('click', () => {
+        const selected = modal.querySelector('.duration-option.selected');
+        if (selected) {
+            handleSubscription(selected.dataset.months);
+            modal.classList.remove('active');
+            setTimeout(() => modal.remove(), 300);
+        }
+    });
+
+    return modal;
+}
+
+function handleSubscription(months) {
+    const subscribeBtn = document.querySelector('.interaction-btn.Subscribe-btn');
+    
+    // Update button appearance
+    subscribeBtn.classList.add('subscribed');
+    subscribeBtn.querySelector('span').textContent = 'Subscribed';
+    
+    // Add subscription badge
+    const badge = document.createElement('div');
+    badge.className = 'subscription-badge';
+    badge.innerHTML = `<span class="time-left">${months} month${months > 1 ? 's' : ''}</span>`;
+    subscribeBtn.appendChild(badge);
+}
+
+// Friends Share Functionality
+document.querySelector('.friends-share').addEventListener('click', () => {
+    const modal = document.querySelector('.friends-share-modal');
+    modal.classList.add('active');
+    loadFriends();
+});
+
+function loadFriends() {
+    const container = document.querySelector('.friends-container');
+    // Demo friends data
+    const friends = Array.from({length: 50}, (_, i) => ({
+        id: i + 1,
+        name: `Friend ${i + 1}`,
+        avatar: `avatar${i + 1}.jpg`
+    }));
+
+    container.innerHTML = friends.map(friend => `
+        <div class="friend-item" data-id="${friend.id}">
+            <img src="${friend.avatar}" alt="${friend.name}" class="friend-avatar">
+            <div class="friend-name">${friend.name}</div>
+        </div>
+    `).join('');
+
+    // Handle friend selection
+    const items = container.querySelectorAll('.friend-item');
+    items.forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('selected');
+            updateSelectedCount();
+        });
+    });
+}
+
+function updateSelectedCount() {
+    const selected = document.querySelectorAll('.friend-item.selected').length;
+    document.querySelector('.selected-count').textContent = `${selected} selected`;
+    const shareBtn = document.querySelector('.share-with-friends-btn');
+    shareBtn.disabled = selected === 0;
+}
+
+// Navigation buttons
+document.querySelector('.nav-btn.prev').addEventListener('click', () => {
+    const container = document.querySelector('.friends-container');
+    container.scrollBy(-200, 0);
+});
+
+document.querySelector('.nav-btn.next').addEventListener('click', () => {
+    const container = document.querySelector('.friends-container');
+    container.scrollBy(200, 0);
+});
+
+// Demo data store
+const followState = {
+    followers: new Set(),
+    counts: {}
+};
+
+function toggleFollow(button) {
+    const userId = button.getAttribute('data-user-id');
+    const isFollowing = button.classList.contains('active');
+    
+    // Toggle button state
+    button.classList.toggle('active');
+    
+    // Update follow count
+    const countElement = document.querySelector(`[data-count-id="${userId}"]`);
+    
+    if (!isFollowing) {
+        // Follow action
+        followState.followers.add(userId);
+        if (countElement) {
+            const currentCount = parseInt(countElement.textContent);
+            countElement.textContent = currentCount + 1;
+            followState.counts[userId] = currentCount + 1;
+        }
+        
+        // Simulate API call
+        simulateFollowAPI(userId, true);
+        
+    } else {
+        // Unfollow action
+        followState.followers.delete(userId);
+        if (countElement) {
+            const currentCount = parseInt(countElement.textContent);
+            countElement.textContent = currentCount - 1;
+            followState.counts[userId] = currentCount - 1;
+        }
+        
+        // Simulate API call
+        simulateFollowAPI(userId, false);
+    }
+}
+
+// Simulate API calls
+function simulateFollowAPI(userId, isFollowing) {
+    console.log(`API Call: ${isFollowing ? 'Following' : 'Unfollowing'} user ${userId}`);
+    // Here you would normally make your actual API call
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve({ success: true });
+        }, 300);
+    });
+}
+
+// Initialize buttons on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.follow-btn');
+    buttons.forEach(button => {
+        const userId = button.getAttribute('data-user-id');
+        if (followState.followers.has(userId)) {
+            button.classList.add('active');
+        }
+    });
+});
+
+// Handle errors
+function handleFollowError(userId) {
+    const button = document.querySelector(`[data-user-id="${userId}"]`);
+    if (button) {
+        button.classList.remove('active');
+        // Revert count if necessary
+        const countElement = document.querySelector(`[data-count-id="${userId}"]`);
+        if (countElement && followState.counts[userId]) {
+            countElement.textContent = followState.counts[userId];
+        }
+    }
+}
+
+// Show/Hide Sound Details Page
+function showSoundDetails() {
+    const soundPage = document.querySelector('.sound-details-page');
+    soundPage.classList.add('active');
+}
+
+// Back Button Functionality
+document.querySelector('.back-btn').addEventListener('click', () => {
+    const soundPage = document.querySelector('.sound-details-page');
+    soundPage.classList.remove('active');
+});
+
+// Bookmark Toggle
+document.querySelector('.bookmark-btn').addEventListener('click', function() {
+    this.classList.toggle('active');
+    const icon = this.querySelector('i');
+    icon.classList.toggle('fas');
+    icon.classList.toggle('far');
+});
+
+// Play/Pause Sound Cover
+document.querySelector('.sound-cover').addEventListener('click', function() {
+    const playIcon = this.querySelector('.fa-play');
+    playIcon.classList.toggle('fa-play');
+    playIcon.classList.toggle('fa-pause');
+});
+
+// Load Posts Grid Dynamically
+function loadPosts() {
+    const postsGrid = document.querySelector('.posts-grid');
+    const postTemplate = `
+        <div class="post-thumbnail">
+            <video src="post-url.mp4"></video>
+            <div class="post-stats">
+                <i class="fas fa-play"></i>
+                <span>${Math.floor(Math.random() * 1000)}K</span>
+            </div>
+        </div>
+    `;
+    
+    // Add 9 demo posts
+    for(let i = 0; i < 9; i++) {
+        postsGrid.innerHTML += postTemplate;
+    }
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    loadPosts();
+});
+
+class LeaderboardManager {
+    constructor() {
+        this.currentFilter = 'views';
+        this.searchTerm = '';
+        this.pageSize = 10;
+        this.currentPage = 1;
+        this.initializeElements();
+        this.bindEvents();
+        this.renderLeaderboard();
+    }
+
+    initializeElements() {
+        this.searchInput = document.querySelector('.search-bar input');
+        this.filterBtns = document.querySelectorAll('.filter-btn');
+        this.leaderboardList = document.querySelector('.leaderboard-list');
+        this.seeAllBtn = document.querySelector('.see-more-btn');
+        this.modal = document.querySelector('.leaderboard-modal');
+    }
+
+    bindEvents() {
+        // Existing event bindings...
+
+        this.seeAllBtn.addEventListener('click', () => {
+            this.openFullLeaderboard();
+        });
+
+        // Infinite scroll for full leaderboard
+        this.leaderboardList.addEventListener('scroll', () => {
+            if (this.modal.classList.contains('active')) {
+                const { scrollTop, scrollHeight, clientHeight } = this.leaderboardList;
+                if (scrollTop + clientHeight >= scrollHeight - 100) {
+                    this.loadMoreEntries();
+                }
+            }
+        });
+    }
+
+    openFullLeaderboard() {
+        this.modal.classList.add('active');
+        this.currentPage = 1;
+        this.renderFullLeaderboard();
+        
+        // Scroll to user's position if available
+        const userPosition = this.findUserPosition();
+        if (userPosition) {
+            this.scrollToPosition(userPosition);
+        }
+    }
+
+    renderFullLeaderboard() {
+        const startIndex = 0;
+        const endIndex = this.pageSize * this.currentPage;
+        const entries = this.getFilteredData().slice(startIndex, endIndex);
+        
+        this.leaderboardList.innerHTML = entries.map((user, index) => `
+            <div class="leaderboard-entry ${index < 3 ? 'top-three' : ''}" 
+                 ${user.isCurrentUser ? 'id="current-user-position"' : ''}>
+                <div class="rank ${this.getRankClass(index + 1)}">
+                    ${index + 1}
+                </div>
+                <img src="${user.avatar}" alt="${user.username}">
+                <div class="user-info">
+                    <span class="username">${user.username}</span>
+                    ${this.getVerificationBadge(user)}
+                </div>
+                <div class="stats">
+                    <span class="${this.currentFilter}">
+                        ${this.formatNumber(user[this.currentFilter])}
+                    </span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    loadMoreEntries() {
+        this.currentPage++;
+        const newEntries = this.getFilteredData()
+            .slice(this.pageSize * (this.currentPage - 1), this.pageSize * this.currentPage);
+        
+        if (newEntries.length > 0) {
+            const fragment = document.createDocumentFragment();
+            newEntries.forEach((user, index) => {
+                const entry = document.createElement('div');
+                entry.className = 'leaderboard-entry';
+                entry.innerHTML = `
+                    <div class="rank">${this.pageSize * (this.currentPage - 1) + index + 1}</div>
+                    <img src="${user.avatar}" alt="${user.username}">
+                    <div class="user-info">
+                        <span class="username">${user.username}</span>
+                        ${this.getVerificationBadge(user)}
+                    </div>
+                    <div class="stats">
+                        <span class="${this.currentFilter}">
+                            ${this.formatNumber(user[this.currentFilter])}
+                        </span>
+                    </div>
+                `;
+                fragment.appendChild(entry);
+            });
+            this.leaderboardList.appendChild(fragment);
+        }
+    }
+
+    scrollToPosition(position) {
+        const element = document.getElementById('current-user-position');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            element.classList.add('highlight');
+            setTimeout(() => element.classList.remove('highlight'), 2000);
+        }
+    }
+
+    getVerificationBadge(user) {
+        if (user.crown) return '<i class="fas fa-crown verified"></i>';
+        if (user.verified) return '<i class="fas fa-check-circle verified"></i>';
+        return '';
+    }
+}
+
+let lastTap = 0;
+
+// Handle double tap on post
+document.querySelectorAll('.tweet-post').forEach(post => {
+    post.addEventListener('touchstart', function(e) {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+        
+        if (tapLength < 300 && tapLength > 0) {
+            const likeBtn = this.querySelector('.tweet-like-btn');
+            handleLike(likeBtn);
+        }
+        lastTap = currentTime;
+    });
+});
+
+function handleLike(button) {
+    button.classList.toggle('liked');
+    const likeCount = button.querySelector('.like-count');
+    const currentLikes = parseInt(likeCount.textContent);
+    
+    if (button.classList.contains('liked')) {
+        likeCount.textContent = (currentLikes + 1) + 'K';
+    } else {
+        likeCount.textContent = (currentLikes - 1) + 'K';
+    }
+}
+// Two-finger tap detection for repost
+document.querySelectorAll('.tweet-repost-btn').forEach(btn => {
+    let touchCount = 0;
+    
+    btn.addEventListener('touchstart', (e) => {
+        touchCount = e.touches.length;
+        if (touchCount === 2) {
+            handleRepost(btn);
+        }
+    });
+});
+
+function handleRepost(button) {
+    button.classList.toggle('reposted');
+    const repostCount = button.querySelector('.repost-count');
+    const currentReposts = parseInt(repostCount.textContent);
+    
+    if (button.classList.contains('reposted')) {
+        repostCount.textContent = (currentReposts + 1) + 'K';
+    } else {
+        repostCount.textContent = (currentReposts - 1) + 'K';
+    }
+}
+
+function handleSave(button) {
+    button.classList.toggle('saved');
+}
+// Initialize comment functionality
+document.querySelectorAll('.tweet-comment-btn').forEach(btn => {
+    btn.addEventListener('click', openCommentSection);
+});
+
+function openCommentSection(e) {
+    e.stopPropagation();
+    
+    // Create and append comment section if it doesn't exist
+    if (!document.querySelector('.tweet-comment-section')) {
+        document.body.insertAdjacentHTML('beforeend', `
+            <div class="tweet-comment-section">
+                <!-- Comment section HTML here -->
+            </div>
+        `);
+        
+        initializeCommentFeatures();
+    }
+    
+    // Show comment section with animation
+    const commentSection = document.querySelector('.tweet-comment-section');
+    commentSection.classList.add('active');
+    
+    // Prevent body scroll when comment section is open
+    document.body.style.overflow = 'hidden';
+}
+
+function initializeCommentFeatures() {
+    // Close button functionality
+    document.querySelector('.close-comments').addEventListener('click', () => {
+        const commentSection = document.querySelector('.tweet-comment-section');
+        commentSection.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+    
+    // Voice note recording
+    const voiceRecordBtn = document.querySelector('.voice-record');
+    let isRecording = false;
+    
+    voiceRecordBtn.addEventListener('click', () => {
+        isRecording = !isRecording;
+        voiceRecordBtn.classList.toggle('recording', isRecording);
+        // Add recording logic here
+    });
+    
+    // Send comment functionality
+    const sendBtn = document.querySelector('.send-comment');
+    const commentInput = document.querySelector('.input-wrapper input');
+    
+    sendBtn.addEventListener('click', () => {
+        if (commentInput.value.trim() || isRecording) {
+            addNewComment(commentInput.value);
+            commentInput.value = '';
+        }
+    });
+    
+    // Comment input enter key
+    commentInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && commentInput.value.trim()) {
+            addNewComment(commentInput.value);
+            commentInput.value = '';
+        }
+    });
+}
+
+function addNewComment(content) {
+    const commentsFeed = document.querySelector('.comments-feed');
+    const newComment = `
+        <div class="comment-item" style="opacity: 0">
+            <img src="user-avatar.jpg" alt="You" class="commenter-avatar">
+            <div class="comment-content">
+                <div class="comment-header">
+                    <span class="commenter-name">You</span>
+                    <span class="comment-time">Just now</span>
+                </div>
+                <p class="comment-text">${content}</p>
+                <div class="comment-actions">
+                    <button class="comment-like">
+                        <i class="fas fa-heart"></i>
+                        <span>0</span>
+                    </button>
+                    <button class="comment-reply">
+                        <i class="fas fa-reply"></i>
+                        <span>Reply</span>
+                    </button>
+                    <button class="comment-gift">
+                        <i class="fas fa-gift"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    commentsFeed.insertAdjacentHTML('afterbegin', newComment);
+    
+    // Animate new comment
+    requestAnimationFrame(() => {
+        const newCommentEl = commentsFeed.firstElementChild;
+        newCommentEl.style.transition = 'opacity 0.3s ease';
+        newCommentEl.style.opacity = '1';
+    });
+    
+    // Update comment count
+    updateCommentCount();
+}
+
+function updateCommentCount() {
+    const countSpan = document.querySelector('.tweet-comment-btn span');
+    const currentCount = parseFloat(countSpan.textContent);
+    countSpan.textContent = (currentCount + 0.1).toFixed(1) + 'K';
+}
 
 </script>
 </body>
