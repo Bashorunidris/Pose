@@ -16,7 +16,7 @@
     --background-dark: #121212;
     --success-color: #4CAF50;
     --error-color: #f44336;
-    --header-height: 60px;
+      --header-height: 60px;
     --footer-height: 50px;
     --container-padding: 15px;
 }
@@ -3995,64 +3995,6 @@ form input:focus {
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-/* iPhone SE, 5, 5S, 5C (320px) */
-@media screen and (min-width: 320px) {
-    :root {
-        --container-padding: 10px;
-    }
-}
-
-/* iPhone 6, 7, 8, Android Small (375px) */
-@media screen and (min-width: 375px) {
-    :root {
-        --container-padding: 15px;
-    }
-}
-
-/* iPhone X, XS, 11 Pro, 12 Mini (390px) */
-@media screen and (min-width: 390px) {
-    .sound-cover {
-        width: 90px;
-        height: 90px;
-    }
-}
-
-/* iPhone 6+, 7+, 8+, Android Medium (414px) */
-@media screen and (min-width: 414px) {
-    .leaderboard-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* iPhone 12, 12 Pro, Android Large (428px) */
-@media screen and (min-width: 428px) {
-    .creator-card {
-        padding: 15px;
-    }
-}
-
-/* iPhone 12 Pro Max, Android XLarge (428px+) */
-@media screen and (min-width: 428px) and (-webkit-device-pixel-ratio: 3) {
-    .sound-cover {
-        width: 100px;
-        height: 100px;
-    }
-}
-
-/* Device-specific features */
-@supports (-webkit-touch-callout: none) {
-    /* iOS-specific styles */
-    .scroll-container {
-        -webkit-overflow-scrolling: touch;
-    }
-}
-
-@supports not (-webkit-touch-callout: none) {
-    /* Android-specific styles */
-    .scroll-container {
-        overflow-y: auto;
-    }
 }
 /* Android Small Devices (320px - 360px) */
 /* Common Android: Galaxy S4 Mini, Galaxy S3 Mini */
