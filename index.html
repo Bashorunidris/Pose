@@ -16,10 +16,26 @@
     --background-dark: #121212;
     --success-color: #4CAF50;
     --error-color: #f44336;
-      --header-height: 60px;
-    --footer-height: 50px;
-    --container-padding: 15px;
+/* Dynamic Font Sizes */
+--font-size-base: clamp(14px, 3.5vw, 16px);
+    --font-size-heading: clamp(18px, 4vw, 24px);
+    --font-size-subheading: clamp(16px, 3.8vw, 20px);
+    --font-size-small: clamp(12px, 3vw, 14px);
+    
+    /* Dynamic Spacing */
+    --spacing-base: clamp(8px, 2vw, 16px);
+    --spacing-large: clamp(16px, 4vw, 32px);
+    --spacing-small: clamp(4px, 1vw, 8px);
+    
+    /* Dynamic Container Padding */
+    --container-padding: clamp(10px, 3vw, 40px);
+    
+    /* Dynamic Component Sizes */
+    --avatar-size: clamp(32px, 8vw, 48px);
+    --icon-size: clamp(18px, 4vw, 24px);
+    --button-height: clamp(36px, 6vw, 44px);
 }
+
 
 * {
     margin: 0;
@@ -27,11 +43,13 @@
     box-sizing: border-box;
 }
 
+
+/* Universal Text Scaling */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.6;
-    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    line-height: 1.5;
 }
+
 
 #app {
     min-height: 100vh;
@@ -697,10 +715,33 @@ form input:focus {
     --text-color: #333;
     --secondary-text: #333;
     --overlay-color: #333;
-    --header-height: 60px;
-    --footer-height: 50px;
-    --container-padding: 15px;
+    /* Dynamic Font Sizes */
+    --font-size-base: clamp(14px, 3.5vw, 16px);
+    --font-size-heading: clamp(18px, 4vw, 24px);
+    --font-size-subheading: clamp(16px, 3.8vw, 20px);
+    --font-size-small: clamp(12px, 3vw, 14px);
+    
+    /* Dynamic Spacing */
+    --spacing-base: clamp(8px, 2vw, 16px);
+    --spacing-large: clamp(16px, 4vw, 32px);
+    --spacing-small: clamp(4px, 1vw, 8px);
+    
+    /* Dynamic Container Padding */
+    --container-padding: clamp(10px, 3vw, 40px);
+    
+    /* Dynamic Component Sizes */
+    --avatar-size: clamp(32px, 8vw, 48px);
+    --icon-size: clamp(18px, 4vw, 24px);
+    --button-height: clamp(36px, 6vw, 44px);
+
 }
+
+/* Universal Text Scaling */
+body {
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+}
+
 
 .profile-container {
     background: #ffffff;
@@ -1784,9 +1825,31 @@ form input:focus {
     --background-dark: #000000;
     --overlay-dark: rgba(0, 0, 0, 0.7);
     --transition-standard: all 0.3s ease;
-    --header-height: 60px;
-    --footer-height: 50px;
-    --container-padding: 15px;
+/* Dynamic Font Sizes */
+--font-size-base: clamp(14px, 3.5vw, 16px);
+    --font-size-heading: clamp(18px, 4vw, 24px);
+    --font-size-subheading: clamp(16px, 3.8vw, 20px);
+    --font-size-small: clamp(12px, 3vw, 14px);
+    
+    /* Dynamic Spacing */
+    --spacing-base: clamp(8px, 2vw, 16px);
+    --spacing-large: clamp(16px, 4vw, 32px);
+    --spacing-small: clamp(4px, 1vw, 8px);
+    
+    /* Dynamic Container Padding */
+    --container-padding: clamp(10px, 3vw, 40px);
+    
+    /* Dynamic Component Sizes */
+    --avatar-size: clamp(32px, 8vw, 48px);
+    --icon-size: clamp(18px, 4vw, 24px);
+    --button-height: clamp(36px, 6vw, 44px);
+}
+
+
+/* Universal Text Scaling */
+body {
+    font-size: var(--font-size-base);
+    line-height: 1.5;
 }
 
 /* Top Creators Section */
@@ -3913,192 +3976,126 @@ form input:focus {
     border-radius: 2px;
 }
 
-
-/* Small tablets (480px and up) */
-@media screen and (min-width: 480px) {
-    :root {
-        --container-padding: 20px;
-    }
-
-    .sound-cover {
-        width: 100px;
-        height: 100px;
-    }
-
-    .leaderboard-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+h1, h2, h3 {
+    font-size: var(--font-size-heading);
+    line-height: 1.2;
 }
 
-/* Tablets (768px and up) */
-@media screen and (min-width: 768px) {
-    :root {
-        --header-height: 70px;
-        --container-padding: 30px;
-    }
-
-    .sound-cover {
-        width: 120px;
-        height: 120px;
-    }
-
-    .leaderboard-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .creators-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.subtitle {
+    font-size: var(--font-size-subheading);
 }
 
-/* Desktop (1024px and up) */
-@media screen and (min-width: 1024px) {
-    :root {
-        --container-padding: 40px;
-    }
-
-    .sound-cover {
-        width: 150px;
-        height: 150px;
-    }
-
-    .creators-list {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .notification-container {
-        max-width: 400px;
-    }
+.small-text {
+    font-size: var(--font-size-small);
 }
 
-/* Large Desktop (1200px and up) */
-@media screen and (min-width: 1200px) {
-    .leaderboard-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .creators-list {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-/* Container Widths */
+/* Universal Spacing & Layout */
 .container {
-    width: 100%;
-    max-width: 1440px;
+    padding: var(--spacing-base);
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 var(--container-padding);
 }
 
-/* Grid System */
 .grid {
     display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-/* Android Small Devices (320px - 360px) */
-/* Common Android: Galaxy S4 Mini, Galaxy S3 Mini */
-@media screen and (min-width: 320px) and (max-width: 360px) {
-    :root {
-        --container-padding: 10px;
-        --header-height: 56px;
-    }
+    gap: var(--spacing-base);
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
 }
 
-/* Android Medium Devices (361px - 400px) */
-/* Galaxy S4, S5, Note 2, Note 3 */
-@media screen and (min-width: 361px) and (max-width: 400px) {
-    :root {
-        --container-padding: 12px;
+/* Component Scaling */
+.user-avatar {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+}
+
+.icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
+}
+
+/* Button Scaling */
+.button {
+    height: var(--button-height);
+    padding: 0 calc(var(--button-height) / 2);
+}
+
+/* Card & Content Scaling */
+.card {
+    padding: var(--spacing-base);
+    gap: var(--spacing-small);
+}
+
+/* Device-Specific Adjustments */
+@media screen and (max-width: 320px) {
+    .tweet-actions {
+        gap: var(--spacing-small);
     }
     
-    .sound-cover {
-        width: 85px;
-        height: 85px;
+    .user-info {
+        gap: 4px;
+    }
+    
+    .post-content {
+        margin: 8px 0;
     }
 }
 
-/* Android Large Devices (401px - 480px) */
-/* Galaxy Note 4, Note 5, S6, S7 */
-@media screen and (min-width: 401px) and (max-width: 480px) {
-    .leaderboard-grid {
-        grid-template-columns: repeat(2, 1fr);
+@media screen and (min-width: 321px) and (max-width: 375px) {
+    .tweet-actions {
+        gap: 8px;
+    }
+    
+    .comment-section {
+        padding: 12px;
+    }
+}
+
+@media screen and (min-width: 376px) and (max-width: 428px) {
+    .notification-item {
+        padding: 12px;
+    }
+    
+    .comment-feed {
         gap: 12px;
     }
 }
 
-/* Android XLarge Devices (481px - 599px) */
-/* Galaxy S8, S9, S10, Note 8, Note 9 */
-@media screen and (min-width: 481px) and (max-width: 599px) {
-    .creator-card {
-        padding: 16px;
-    }
-}
-
-/* Android Tablets (600px - 840px) */
-/* Galaxy Tab Series */
-@media screen and (min-width: 600px) and (max-width: 840px) {
-    .sound-cover {
-        width: 110px;
-        height: 110px;
-    }
-}
-
-/* Android Specific Features */
-@supports (-webkit-appearance: none) and (not (-moz-appearance: none)) {
-    /* Material Design Elevation */
-    .card {
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+/* Larger Screens */
+@media screen and (min-width: 768px) {
+    :root {
+        --container-padding: clamp(20px, 4vw, 60px);
     }
     
-    /* Android Ripple Effect */
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .interactive-element {
+        min-height: 44px; /* Minimum touch target size */
+    }
+    
     .button {
-        -webkit-tap-highlight-color: transparent;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    /* Android Chrome Address Bar Color */
-    meta[name="theme-color"] {
-        content: "#000000";
+        padding: var(--spacing-base) calc(var(--spacing-base) * 2);
     }
 }
 
-/* Android Device Pixel Ratios */
-@media screen and (-webkit-min-device-pixel-ratio: 2) {
-    /* High DPI Android Devices */
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .image {
         transform: translateZ(0);
     }
 }
 
-@media screen and (-webkit-min-device-pixel-ratio: 3) {
-    /* Super High DPI Android Devices */
-    .image {
-        -webkit-font-smoothing: antialiased;
-    }
+/* Safe Area Insets */
+.fixed-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
-/* Android Navigation Bar Height Adjustment */
-@supports (padding-bottom: env(safe-area-inset-bottom)) {
-    .bottom-nav {
-        padding-bottom: env(safe-area-inset-bottom);
-        height: calc(var(--nav-height) + env(safe-area-inset-bottom));
-    }
-}
-
-/* Android Specific Scrolling */
-.scroll-container {
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: auto;
-}
-
-/* Android Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --system-bar-color: #121212;
-        --navigation-bar-color: #1f1f1f;
-    }
+.fixed-top {
+    padding-top: env(safe-area-inset-top, 0);
 }
 
     </style>
