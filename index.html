@@ -16,6 +16,9 @@
     --background-dark: #121212;
     --success-color: #4CAF50;
     --error-color: #f44336;
+    --header-height: 60px;
+    --footer-height: 50px;
+    --container-padding: 15px;
 }
 
 * {
@@ -542,36 +545,7 @@ form input:focus {
     }
 }
 
-/* Responsive Design */
-@media (max-width: 480px) {
-    .auth-container {
-        padding: 20px;
-        margin: 10px;
-    }
     
-    form input, .submit-btn, .google-btn {
-        padding: 12px;
-    }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-    .auth-container {
-        max-width: 450px;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .auth-container {
-        max-width: 500px;
-    }
-}
-
-@media (min-width: 1025px) {
-    .auth-container {
-        max-width: 400px;
-    }
-}
-
 /* Main Container */
 
 .homepage-1 {
@@ -715,143 +689,17 @@ form input:focus {
 
 
 
-/* Responsive Design */
-@media screen and (max-width: 1200px) {
-    .search-bar input {
-        width: 180px;
-    }
-}
-
-@media screen and (max-width: 992px) {
-    .tab-navigation {
-        gap: 20px;
-    }
     
-    .tab-item {
-        font-size: 14px;
-        padding: 6px 15px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .user-profile-corner {
-        top: 10px;
-        left: 10px;
-    }
     
-    .profile-link {
-        padding: 6px 12px;
-    }
-    
-    .profile-image {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .username {
-        max-width: 100px;
-        font-size: 12px;
-    }
-    
-    .search-container {
-        top: 10px;
-        right: 10px;
-    }
-    
-    .search-bar input {
-        width: 150px;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .tab-navigation {
-        gap: 15px;
-        padding: 10px 0;
-    }
-    
-    .search-bar {
-        padding: 6px 12px;
-    }
-    
-    .search-bar input {
-        width: 120px;
-        font-size: 12px;
-    }
-    
-    .search-bar i {
-        font-size: 14px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .username {
-        display: none;
-    }
-    
-    .tab-navigation {
-        gap: 10px;
-    }
-    
-    .tab-item {
-        padding: 5px 10px;
-        font-size: 12px;
-    }
-    
-    .search-bar input {
-        width: 100px;
-    }
-}
-
-@media screen and (max-width: 360px) {
-    .search-bar input {
-        width: 80px;
-    }
-    
-    .tab-navigation {
-        gap: 5px;
-    }
-}
-
-/* Device-specific optimizations */
-@media (orientation: landscape) and (max-height: 500px) {
-    .tab-navigation {
-        padding: 8px 0;
-    }
-    
-    .user-profile-corner,
-    .search-container {
-        top: 5px;
-    }
-}
-
-/* High-resolution screens */
-@media screen and (min-width: 1400px) {
-    .search-bar input {
-        width: 250px;
-    }
-    
-    .tab-item {
-        font-size: 18px;
-    }
-}
-
-/* Touch device optimizations */
-@media (hover: none) {
-    .profile-link:hover {
-        transform: none;
-    }
-    
-    .tab-item {
-        padding: 10px 20px; /* Larger touch target */
-    }
-}
-
 
 :root {
     --primary-color: hsla(286, 92%, 14%, 0.658);
     --text-color: #333;
     --secondary-text: #333;
     --overlay-color: #333;
+    --header-height: 60px;
+    --footer-height: 50px;
+    --container-padding: 15px;
 }
 
 .profile-container {
@@ -908,13 +756,6 @@ form input:focus {
     overflow: hidden;
     border: 3px solid #000;
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-}
-
-/* For retina displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .image-container {
-        border-width: 2px;
-    }
 }
 
 
@@ -1110,13 +951,6 @@ form input:focus {
     width: 50px;
 }
 
-/* For Dark Mode */
-@media (prefers-color-scheme: dark) {
-    .demarcation-line {
-        background: rgba(255, 255, 255, 0.2);
-    }
-}
-
 
 /* Stats Styles */
 .stats-container {
@@ -1188,43 +1022,6 @@ form input:focus {
     animation: statPulse 0.3s ease;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .stats-container {
-        gap: 35px;
-        padding: 12px;
-    }
-    
-    .stat-value {
-        font-size: 20px;
-    }
-    
-    .display-name h2 {
-        font-size: 24px;
-    }
-}
-
-@media (max-width: 480px) {
-    .stats-container {
-        gap: 25px;
-        padding: 10px;
-    }
-    
-    .stat-value {
-        font-size: 18px;
-    }
-    
-    .display-name h2 {
-        font-size: 22px;
-    }
-    
-    .user-id {
-        font-size: 14px;
-    }
-}
-
-
-   
 .bottom-navigation {
     position: fixed;
     bottom: 0;
@@ -1284,20 +1081,6 @@ form input:focus {
     color: hsla(286, 92%, 14%, 1);
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-    .bottom-navigation {
-        height: 50px;
-    }
-    
-    .nav-item i {
-        font-size: 20px;
-    }
-    
-    .post-btn {
-        transform: translateY(-10px);
-    }
-}
 
 /* Content Container */
 .content-container {
@@ -1396,100 +1179,6 @@ form input:focus {
     color: #00ff00;
 }
 
-/* Large Screens (Laptops & Desktops) */
-@media screen and (min-width: 1024px) {
-    .interaction-buttons {
-        right: 20px;
-        bottom: 16%;
-        gap: 12px;
-    }
-
-    .btn-icon {
-        width: 50px;
-        height: 50px;
-    }
-
-    .btn-icon i {
-        font-size: 22px;
-    }
-}
-
-/* Tablets & iPads */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    .interaction-buttons {
-        right: 18px;
-        bottom: 15%;
-    }
-
-    .interaction-btn {
-        width: 60px;
-    }
-}
-
-/* Large Phones */
-@media screen and (min-width: 480px) and (max-width: 767px) {
-    .interaction-buttons {
-        right: 15px;
-        bottom: 13%;
-        gap: 8px;
-    }
-
-    .btn-icon {
-        width: 42px;
-        height: 42px;
-    }
-}
-
-/* Small Phones */
-@media screen and (max-width: 479px) {
-    .interaction-buttons {
-        right: 12px;
-        bottom: 12%;
-        gap: 6px;
-    }
-
-    .interaction-btn {
-        width: 55px;
-    }
-
-    .btn-icon {
-        width: 38px;
-        height: 38px;
-    }
-
-    .btn-icon i {
-        font-size: 18px;
-    }
-
-    .interaction-count {
-        font-size: 12px;
-    }
-}
-
-/* iPhone SE and smaller devices */
-@media screen and (max-width: 375px) {
-    .interaction-buttons {
-        right: 10px;
-        bottom: 10%;
-    }
-
-    .btn-icon {
-        width: 35px;
-        height: 35px;
-    }
-
-    .btn-icon i {
-        font-size: 16px;
-    }
-}
-
-/* For devices in landscape mode */
-@media screen and (orientation: landscape) and (max-height: 600px) {
-    .interaction-buttons {
-        bottom: 20%;
-    }
-}
-
 
 .post-info {
     position: absolute;
@@ -1542,11 +1231,6 @@ form input:focus {
     margin-left: 4px;
 }
 
-@media screen and (max-width: 480px) {
-    .post-time {
-        font-size: 12px;
-    }
-}
 
 
 .username {
@@ -1575,20 +1259,6 @@ form input:focus {
     z-index: 2;
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-    .followers {
-        font-size: 18px;
-        margin: 3px 0 8px 0;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .followers {
-        font-size: 16px;
-        margin: 2px 0 6px 0;
-    }
-}
 
 
 
@@ -1700,27 +1370,6 @@ form input:focus {
     }
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .caption-content {
-        font-size: 14px;
-    }
-    
-    .action-btn {
-        width: 28px;
-        height: 28px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .caption-wrapper {
-        max-height: 45px;
-    }
-    
-    .caption-actions {
-        gap: 6px;
-    }
-}
 
 
 .translate-options {
@@ -1836,58 +1485,6 @@ form input:focus {
         transform: translateY(0);
     }
 }
-
-/* Responsive Design */
-@media screen and (max-width: 480px) {
-    .language-menu {
-        width: 180px;
-    }
-
-    .lang-option {
-        padding: 10px 14px;
-        font-size: 14px;
-    }
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .post-info {
-        padding: 15px;
-    }
-    
-    .caption-container {
-        max-width: 100%;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .profile-pic {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .username {
-        font-size: 14px;
-    }
-    
-    .followers {
-        font-size: 15px;
-    }
-    
-    
-}
-
-@media screen and (max-height: 600px) {
-    .post-info {
-        padding: 10px;
-    }
-    
-    .caption-container {
-        font-size: 12px;
-    }
-}
-
-
 /* Interactive States */
 .interaction-btn:active {
     transform: scale(0.9);
@@ -1895,33 +1492,6 @@ form input:focus {
 
 
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .interaction-buttons {
-        right: 8px;
-        bottom: 120px;
-    }
-
-    .btn-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    .btn-icon i {
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .post-info {
-        padding: 16px;
-    }
-
-    .profile-pic {
-        width: 40px;
-        height: 40px;
-    }
-}
 
 
 .interaction-count {
@@ -2214,6 +1784,9 @@ form input:focus {
     --background-dark: #000000;
     --overlay-dark: rgba(0, 0, 0, 0.7);
     --transition-standard: all 0.3s ease;
+    --header-height: 60px;
+    --footer-height: 50px;
+    --container-padding: 15px;
 }
 
 /* Top Creators Section */
@@ -2408,52 +1981,6 @@ form input:focus {
     border-radius: 8px;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 1024px) {
-    .sound-info-wrapper {
-        flex-direction: column;
-    }
-
-    .top-creators {
-        max-width: 100%;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .creators-list {
-        flex-direction: row;
-        overflow-x: auto;
-        padding-bottom: 10px;
-    }
-
-    .creator-card {
-        min-width: 200px;
-    }
-
-    .search-section {
-        padding: 10px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .creator-card {
-        min-width: 150px;
-    }
-
-    .modal-header {
-        padding: 15px;
-    }
-
-    .filter-tabs {
-        overflow-x: auto;
-        padding-bottom: 5px;
-    }
-
-    .filter-btn {
-        white-space: nowrap;
-    }
-}
-
 /* Custom Scrollbar */
 .creators-list::-webkit-scrollbar,
 .leaderboard-list::-webkit-scrollbar {
@@ -2538,50 +2065,6 @@ form input:focus {
 }
 
 
-
-/* Media Queries */
-@media screen and (min-width: 1024px) {
-    .sound-cover {
-        width: 150px;
-        height: 150px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .leaderboard-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .sound-cover {
-        width: 100px;
-        height: 100px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .sound-header {
-        padding: 15px;
-    }
-    
-    .sound-cover {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .leaderboard-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .top-position {
-        grid-column: auto;
-        grid-row: auto;
-    }
-    
-    .filter-btn {
-        padding: 4px 10px;
-        font-size: 12px;
-    }
-}
 
 
 
@@ -2837,7 +2320,7 @@ form input:focus {
 }
 
 .priority-user  {
-    background: #636464;
+    background: #694666d5;
     padding: 8px 20px;
     border-radius: 4px;
     color: #fff;
@@ -2882,44 +2365,6 @@ form input:focus {
     animation: clickPulse 0.3s ease;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .reposter-avatar {
-        width: 40px;
-        height: 40px;
-    }
-
-    .follow-btn {
-        padding: 6px 16px;
-        font-size: 14px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .modal-header h3 {
-        font-size: 15px;
-    }
-
-    .reposter-name {
-        font-size: 14px;
-    }
-
-    .reposter-followers {
-        font-size: 12px;
-    }
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .repost-banner {
-        padding: 6px 12px;
-    }
-    
-    .repost-username, 
-    .repost-text {
-        font-size: 12px;
-    }
-}
 
    
 .subscribe-btn[data-subscription-status="true"] {
@@ -3063,16 +2508,6 @@ form input:focus {
     }
 }
 
-/* Responsive Design */
-@media screen and (max-width: 480px) {
-    .subscription-modal {
-        width: 95%;
-    }
-    
-    .price {
-        font-size: 20px;
-    }
-}
 
 .comments-section {
     position: fixed;
@@ -3107,11 +2542,11 @@ form input:focus {
 }
 
 .close-comments {
-    background: none;
+    background: transparent;
     border: none;
-    color: #fff;
-    font-size: 20px;
+    color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
+    padding: 0.5rem;
 }
 
 .comment-input-area {
@@ -3123,8 +2558,8 @@ form input:focus {
 
 .user-avatar img,
 .comment-user-avatar img {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -3214,14 +2649,31 @@ form input:focus {
 
 .like-comment,
 .reply-comment {
-    background: none;
+    background: transparent;
     border: none;
     color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
+    font-size: 0.875rem;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+}
+
+.reply-comment:hover {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.reply-comment:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.3);
+    outline-offset: 2px;
+}
+
+.reply-comment:active {
+    transform: scale(0.98);
 }
 
 /* Custom Scrollbar */
@@ -3237,7 +2689,120 @@ form input:focus {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 3px;
 }
+.reply-input {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.75rem;
+    border-radius: 20px;
+    margin-top: 0.75rem;
+}
 
+.reply-input input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 0.875rem;
+    padding: 0.25rem;
+}
+
+.reply-input input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.reply-input input:focus {
+    outline: none;
+}
+
+.voice-record-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.2s ease;
+}
+
+.voice-record-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.voice-record-btn.recording {
+    color: #ff4444;
+    animation: pulse 1.5s infinite;
+}
+
+.record-timer {
+    font-size: 0.75rem;
+    min-width: 24px;
+}
+
+.send-reply-btn {
+    background: transparent;
+    border: none;
+    color: #3897f0;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.send-reply-btn:hover {
+    transform: scale(1.1);
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.replies-section {
+    margin-left: 2rem;
+    margin-top: 1rem;
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    padding-left: 1rem;
+}
+
+.replies-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.load-more-replies {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.875rem;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.load-more-replies:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.load-more-replies:active {
+    transform: scale(0.98);
+}
+
+.load-more-replies:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.2);
+    outline-offset: 2px;
+}
 
 .share-menu {
     position: fixed;
@@ -3454,21 +3019,6 @@ form input:focus {
     cursor: not-allowed;
 }
 
-@media screen and (max-width: 480px) {
-    .friends-carousel {
-        gap: 10px;
-    }
-
-    .friend-item {
-        width: 60px;
-    }
-
-    .friend-avatar {
-        width: 50px;
-        height: 50px;
-    }
-}
-
 /* Platform-specific colors */
 .whatsapp { background: #25D366; }
 .telegram { background: #0088cc; }
@@ -3478,23 +3028,7 @@ form input:focus {
 .save { background: #ff0000; }
 .report { background: #ff4444; }
 
-/* Responsive Design */
-@media screen and (max-width: 480px) {
-    .share-section {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 15px;
-    }
-
-    .share-icon {
-        width: 45px;
-        height: 45px;
-        font-size: 20px;
-    }
-
-    .share-item span {
-        font-size: 11px;
-    }
-}
+   
 
 /* Animation for share menu */
 @keyframes slideUp {
@@ -3886,125 +3420,742 @@ form input:focus {
 }
 
 .comment-header {
-    padding: 15px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .original-post-preview {
-    padding: 10px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 12px;
-    margin-bottom: 10px;
+    flex: 1;
+}
+
+.post-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.post-author img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-weight: 600;
+    color: #fff;
+}
+
+.follower-count {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.post-preview-content {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+.close-comments {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 0.5rem;
 }
 
 .comments-feed {
-    flex: 1;
+    padding: 1rem;
+    max-height: 60vh;
     overflow-y: auto;
-    padding: 15px;
 }
 
 .comment-item {
     display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .commenter-avatar {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .comment-content {
     flex: 1;
 }
 
-.voice-note-player {
-    background: rgba(255,255,255,0.05);
-    border-radius: 20px;
-    padding: 8px;
+.comment-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin: 8px 0;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.commenter-name {
+    font-weight: 500;
+    color: #fff;
+}
+
+.comment-time {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.comment-text {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+}
+
+.voice-note-player {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.75rem;
+    border-radius: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.play-voice-note {
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.voice-waveform {
+    flex: 1;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+}
+
+.voice-duration {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
 }
 
 .comment-actions {
     display: flex;
-    gap: 15px;
-    margin-top: 8px;
+    gap: 1rem;
+}
+
+.comment-actions button {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.25rem;
 }
 
 .comment-input-section {
-    padding: 15px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
 }
 
 .input-toolbar {
     display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.input-toolbar button {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 0.5rem;
 }
 
 .input-wrapper {
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 20px;
-    padding: 8px 15px;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.75rem;
+    border-radius: 1.5rem;
 }
 
 .input-wrapper input {
     flex: 1;
-    background: none;
+    background: transparent;
     border: none;
+    color: #fff;
+    font-size: 0.9375rem;
+}
+
+.input-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input-wrapper button {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.send-comment {
+    color: #3897f0 !important;
+}
+
+#notificationBtn span {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff3b30;
+    color: white;
+    border-radius: 50%;
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px;
+}
+
+.notification-container {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background: #000;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.notification-container.active {
+    right: 0;
+}
+
+@media (max-width: 480px) {
+    .notification-container {
+        max-width: 100%;
+    }
+}
+.notification-container {
+    background: #000;
+    height: 100vh;
     color: #fff;
 }
 
-.voice-record, .send-comment {
+/* Header Styles */
+.notification-header {
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    z-index: 100;
+}
+
+.notification-header h2 {
+    margin: 0 0 15px 0;
+    font-size: 24px;
+}
+
+.notification-filters {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background: #8A2BE2;
+}
+
+/* Section Styles */
+.notification-section {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header h3 {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.mark-read-btn {
     background: none;
     border: none;
     color: #8A2BE2;
-    font-size: 20px;
+    font-size: 14px;
     cursor: pointer;
 }
 
-/* Animation for voice recording */
-@keyframes recordPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+/* Notification Items */
+.notification-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    transition: transform 0.2s ease;
 }
 
-.voice-record.recording {
-    color: #ff3b30;
-    animation: recordPulse 1s infinite;
+.notification-item:active {
+    transform: scale(0.98);
+}
+
+.notification-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #8A2BE2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+}
+
+.notification-content {
+    flex: 1;
+    margin-right: 12px;
+}
+
+.notification-time {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+}
+
+/* Achievement Notification */
+.achievement {
+    background: linear-gradient(45deg, rgba(138, 43, 226, 0.2), rgba(138, 43, 226, 0.1));
+}
+
+.achievement-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.achievement-banner img {
+    width: 48px;
+    height: 48px;
+}
+
+.achievement-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.achievement-actions button {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.share-achievement {
+    background: #8A2BE2;
+    color: #fff;
+}
+
+.view-insights {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Interaction Group */
+.user-avatars {
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+}
+
+.user-avatars img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    margin-right: -8px;
+}
+
+.more-users {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+/* Voice Note Comment */
+.voice-note-player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    border-radius: 20px;
+    margin-top: 8px;
+}
+
+.play-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #8A2BE2;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.waveform {
+    flex: 1;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+/* Content Preview */
+.content-preview {
+    margin-top: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 200px;
+}
+
+.content-preview video {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .button-group {
-        justify-content: flex-start;
+    .notification-header h2 {
+        font-size: 20px;
     }
     
-    .user-header {
-        gap: 8px;
+    .achievement-actions {
+        flex-direction: column;
+    }
+    
+    .content-preview {
+        max-width: 150px;
     }
 }
 
-@media (max-width: 480px) {
-    .tweet-post {
-        padding: 12px;
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.achievement {
+    animation: pulse 2s infinite;
+}
+
+/* Custom Scrollbar */
+.notification-filters::-webkit-scrollbar {
+    height: 4px;
+}
+
+.notification-filters::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+
+/* Small tablets (480px and up) */
+@media screen and (min-width: 480px) {
+    :root {
+        --container-padding: 20px;
+    }
+
+    .sound-cover {
+        width: 100px;
+        height: 100px;
+    }
+
+    .leaderboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablets (768px and up) */
+@media screen and (min-width: 768px) {
+    :root {
+        --header-height: 70px;
+        --container-padding: 30px;
+    }
+
+    .sound-cover {
+        width: 120px;
+        height: 120px;
+    }
+
+    .leaderboard-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .creators-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop (1024px and up) */
+@media screen and (min-width: 1024px) {
+    :root {
+        --container-padding: 40px;
+    }
+
+    .sound-cover {
+        width: 150px;
+        height: 150px;
+    }
+
+    .creators-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .notification-container {
+        max-width: 400px;
+    }
+}
+
+/* Large Desktop (1200px and up) */
+@media screen and (min-width: 1200px) {
+    .leaderboard-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .creators-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Container Widths */
+.container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* Grid System */
+.grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+/* iPhone SE, 5, 5S, 5C (320px) */
+@media screen and (min-width: 320px) {
+    :root {
+        --container-padding: 10px;
+    }
+}
+
+/* iPhone 6, 7, 8, Android Small (375px) */
+@media screen and (min-width: 375px) {
+    :root {
+        --container-padding: 15px;
+    }
+}
+
+/* iPhone X, XS, 11 Pro, 12 Mini (390px) */
+@media screen and (min-width: 390px) {
+    .sound-cover {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+/* iPhone 6+, 7+, 8+, Android Medium (414px) */
+@media screen and (min-width: 414px) {
+    .leaderboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* iPhone 12, 12 Pro, Android Large (428px) */
+@media screen and (min-width: 428px) {
+    .creator-card {
+        padding: 15px;
+    }
+}
+
+/* iPhone 12 Pro Max, Android XLarge (428px+) */
+@media screen and (min-width: 428px) and (-webkit-device-pixel-ratio: 3) {
+    .sound-cover {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Device-specific features */
+@supports (-webkit-touch-callout: none) {
+    /* iOS-specific styles */
+    .scroll-container {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@supports not (-webkit-touch-callout: none) {
+    /* Android-specific styles */
+    .scroll-container {
+        overflow-y: auto;
+    }
+}
+/* Android Small Devices (320px - 360px) */
+/* Common Android: Galaxy S4 Mini, Galaxy S3 Mini */
+@media screen and (min-width: 320px) and (max-width: 360px) {
+    :root {
+        --container-padding: 10px;
+        --header-height: 56px;
+    }
+}
+
+/* Android Medium Devices (361px - 400px) */
+/* Galaxy S4, S5, Note 2, Note 3 */
+@media screen and (min-width: 361px) and (max-width: 400px) {
+    :root {
+        --container-padding: 12px;
     }
     
-    .user-avatar img {
-        width: 40px;
-        height: 40px;
+    .sound-cover {
+        width: 85px;
+        height: 85px;
+    }
+}
+
+/* Android Large Devices (401px - 480px) */
+/* Galaxy Note 4, Note 5, S6, S7 */
+@media screen and (min-width: 401px) and (max-width: 480px) {
+    .leaderboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
+
+/* Android XLarge Devices (481px - 599px) */
+/* Galaxy S8, S9, S10, Note 8, Note 9 */
+@media screen and (min-width: 481px) and (max-width: 599px) {
+    .creator-card {
+        padding: 16px;
+    }
+}
+
+/* Android Tablets (600px - 840px) */
+/* Galaxy Tab Series */
+@media screen and (min-width: 600px) and (max-width: 840px) {
+    .sound-cover {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+/* Android Specific Features */
+@supports (-webkit-appearance: none) and (not (-moz-appearance: none)) {
+    /* Material Design Elevation */
+    .card {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     
-    .username {
-        font-size: 14px;
+    /* Android Ripple Effect */
+    .button {
+        -webkit-tap-highlight-color: transparent;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Android Chrome Address Bar Color */
+    meta[name="theme-color"] {
+        content: "#000000";
+    }
+}
+
+/* Android Device Pixel Ratios */
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+    /* High DPI Android Devices */
+    .image {
+        transform: translateZ(0);
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 3) {
+    /* Super High DPI Android Devices */
+    .image {
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+/* Android Navigation Bar Height Adjustment */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom);
+        height: calc(var(--nav-height) + env(safe-area-inset-bottom));
+    }
+}
+
+/* Android Specific Scrolling */
+.scroll-container {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: auto;
+}
+
+/* Android Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --system-bar-color: #121212;
+        --navigation-bar-color: #1f1f1f;
     }
 }
 
@@ -4273,11 +4424,47 @@ form input:focus {
                                     <button class="voice-comment">
                                         <i class="fas fa-microphone"></i>
                                     </button>
-                                    <button class="post-comment">Post</button>
+                                    <button class="post-comment">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                    
+                        
+                        
+                            <div class="comments-container">
+                                <!-- Single Comment -->
+                                <div class="comment-item">
+                                    <div class="comment-user-avatar">
+                                        <img src="commenter-avatar.jpg" alt="Commenter">
+                                    </div>
+                                    <div class="comment-content">
+                                        <div class="comment-user-info">
+                                            <span class="comment-username">Username</span>
+                                            <span class="comment-time">2h ago</span>
+                                        </div>
+                                        <p class="comment-text">This is a comment text</p>
+                                        <div class="comment-actions">
+                                            <button class="like-comment" onclick="handleCommentLike(this)">
+                                                <i class="far fa-heart"></i>
+                                                <span>245</span>
+                                            </button>
+                                            <button class="reply-comment" onclick="showReplyInput(this)">Reply</button>
+                                        </div>
+                                        <!-- Reply Section -->
+                                        <div class="replies-section" style="display: none;">
+                                            <div class="replies-list"></div>
+                                            <button class="load-more-replies" style="display: none;">
+                                                Show more replies
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            
+                        </div>
+                        
                 
                     
                     <button class="interaction-btn share-btn">
@@ -4851,12 +5038,18 @@ form input:focus {
                         <i class="fas fa-heart"></i>
                         <span>123</span>
                     </button>
-                    <button class="comment-reply">
-                        <i class="fas fa-reply"></i>
-                        <span>Reply</span>
+                    <button class="comment-reply" onclick="showReplyInput(this)">Reply
+                        
                     </button>
                     <button class="comment-gift">
                         <i class="fas fa-gift"></i>
+                    </button>
+                </div>
+                <!-- Reply Section -->
+                <div class="comment-replies-section" style="display: none;">
+                    <div class="replies-list"></div>
+                    <button class="load-morecomment-replies" style="display: none;">
+                        Show more replies
                     </button>
                 </div>
             </div>
@@ -4896,10 +5089,9 @@ form input:focus {
                 <i class="fas fa-bell"></i>
                 <span></span>
             </div>
-        
             <div class="nav-item post-btn" id="postBtn">
                 <div class="post-icon">
-                    <i class="fas fa-add"></i>  
+           <i class="fas fa-add"></i>  
                 </div>
             </div>
         
@@ -4914,7 +5106,100 @@ form input:focus {
             </div>
         </div>
         
-
+        <div class="notification-container">
+            <!-- Notification Header -->
+            <div class="notification-header">
+                <h2>Notifications</h2>
+                <div class="notification-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="interactions">Likes</button>
+                    <button class="filter-btn" data-filter="comments">Comments</button>
+                    <button class="filter-btn" data-filter="mentions">Mentions</button>
+                    <button class="filter-btn" data-filter="followers">Followers</button>
+                </div>
+            </div>
+        
+            <!-- Today's Notifications -->
+            <div class="notification-section">
+                <div class="section-header">
+                    <h3>Today</h3>
+                    <button class="mark-read-btn">Mark all as read</button>
+                </div>
+        
+                <div class="notification-list">
+                    <!-- Achievement Notification -->
+                    <div class="notification-item achievement">
+                        <div class="notification-badge">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="achievement-banner">
+                                <img src="achievement-badge.png" alt="1M Views Badge">
+                                <h4>1M Views Club!</h4>
+                            </div>
+                            <p>Your post reached 1 million views! Share this achievement?</p>
+                            <div class="achievement-actions">
+                                <button class="share-achievement">Share</button>
+                                <button class="view-insights">View Insights</button>
+                            </div>
+                        </div>
+                        <span class="notification-time">2h</span>
+                    </div>
+        
+                    <!-- Interaction Group Notification -->
+                    <div class="notification-item interaction-group">
+                        <div class="user-avatars">
+                            <img src="user1.jpg" alt="User 1">
+                            <img src="user2.jpg" alt="User 2">
+                            <div class="more-users">+23</div>
+                        </div>
+                        <div class="notification-content">
+                            <p><strong>@user1</strong> and <strong>24 others</strong> liked your post</p>
+                            <div class="content-preview">
+                                <video src="post-preview.mp4"></video>
+                            </div>
+                        </div>
+                        <span class="notification-time">3h</span>
+                    </div>
+        
+                    <!-- Voice Note Comment Notification -->
+                    <div class="notification-item voice-comment">
+                        <img src="user-avatar.jpg" alt="User" class="user-avatar">
+                        <div class="notification-content">
+                            <p><strong>@username</strong> left a voice note on your post</p>
+                            <div class="voice-note-player">
+                                <button class="play-btn">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <div class="waveform">
+                                    <!-- Voice waveform visualization -->
+                                </div>
+                                <span class="duration">0:15</span>
+                            </div>
+                        </div>
+                        <span class="notification-time">5h</span>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- This Week Section -->
+            <div class="notification-section">
+                <div class="section-header">
+                    <h3>This Week</h3>
+                </div>
+                <!-- Similar notification items structure -->
+            </div>
+        
+            <!-- Earlier Section -->
+            <div class="notification-section">
+                <div class="section-header">
+                    <h3>Earlier</h3>
+                </div>
+                <!-- Similar notification items structure -->
+            </div>
+        </div>
+        
+        
 <div class="profile-container">
     <!-- Header -->
     <header class="profile-header">
@@ -5403,43 +5688,117 @@ function showToast(message) {
     }, 3000);
 }
 
-// Comment Input Handler
-const commentInput = document.querySelector('.input-wrapper input');
-const postCommentBtn = document.querySelector('.post-comment');
+       
+  // Voice Recording Implementation
+let mediaRecorder = null;
+let audioChunks = [];
+let recordingTimer = null;
 
-postCommentBtn.addEventListener('click', () => {
-    const commentText = commentInput.value.trim();
-    if (commentText) {
-        addNewComment(commentText);
-        commentInput.value = '';
+function toggleVoiceRecording(button) {
+    if (!mediaRecorder) {
+        // Request microphone access
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                mediaRecorder = new MediaRecorder(stream);
+                startRecording(button);
+                
+                // Handle recorded data
+                mediaRecorder.ondataavailable = (event) => {
+                    audioChunks.push(event.data);
+                };
+                
+                // Handle recording stop
+                mediaRecorder.onstop = () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    showAudioPreview(audioUrl);
+                };
+            })
+            .catch(error => {
+                console.error('Microphone access denied:', error);
+                alert('Please allow microphone access to record voice notes.');
+            });
+    } else {
+        stopRecording();
     }
-});
-
-function addNewComment(text) {
-    const commentsContainer = document.querySelector('.comments-container');
-    const newComment = document.createElement('div');
-    newComment.className = 'comment-item';
-    newComment.innerHTML = `
-        <div class="comment-user-avatar">
-            <img src="user-avatar.jpg" alt="Your avatar">
-        </div>
-        <div class="comment-content">
-            <div class="comment-user-info">
-                <span class="comment-username">You</span>
-                <span class="comment-time">Just now</span>
-            </div>
-            <p class="comment-text">${text}</p>
-            <div class="comment-actions">
-                <button class="like-comment">
-                    <i class="far fa-heart"></i>
-                    <span>0</span>
-                </button>
-                <button class="reply-comment">Reply</button>
-            </div>
-        </div>
-    `;
-    commentsContainer.prepend(newComment);
 }
+
+function startRecording(button) {
+    audioChunks = [];
+    mediaRecorder.start();
+    button.classList.add('recording');
+    
+    let timeLeft = 25; // 25 seconds for main comments
+    const timerDisplay = button.querySelector('.record-timer');
+    
+    recordingTimer = setInterval(() => {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft + 's';
+        
+        if (timeLeft <= 0) {
+            stopRecording();
+        }
+    }, 1000);
+}
+
+function stopRecording() {
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        clearInterval(recordingTimer);
+        
+        const recordBtn = document.querySelector('.voice-record-btn');
+        recordBtn.classList.remove('recording');
+        recordBtn.querySelector('.record-timer').textContent = '25s';
+    }
+}
+
+function showAudioPreview(audioUrl) {
+    const preview = document.querySelector('.voice-preview');
+    const audio = document.querySelector('#recordedAudio');
+    
+    preview.style.display = 'flex';
+    audio.src = audioUrl;
+    
+    // Create audio visualization
+    visualizeAudio(audio);
+}
+
+// Handle comment likes
+function handleCommentLike(button) {
+    button.classList.toggle('active');
+    const countSpan = button.querySelector('span');
+    let count = parseInt(countSpan.textContent);
+    
+    if (button.classList.contains('active')) {
+        countSpan.textContent = count + 1;
+    } else {
+        countSpan.textContent = count - 1;
+    }
+}
+
+// Show reply input
+function showReplyInput(button) {
+    const repliesSection = button.closest('.comment-content').querySelector('.replies-section');
+    repliesSection.style.display = 'block';
+    
+    // Create reply input if it doesn't exist
+    if (!repliesSection.querySelector('.reply-input')) {
+        const replyInput = `
+            <div class="reply-input">
+                <input type="text" placeholder="Write a reply..." maxlength="120">
+                <button class="voice-record-btn" onclick="toggleVoiceRecording(this)">
+                    <i class="fas fa-microphone"></i>
+                    <span class="record-timer">10s</span>
+                </button>
+                <button class="send-reply-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        `;
+        repliesSection.insertAdjacentHTML('beforeend', replyInput);
+    }
+}
+      
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -6001,11 +6360,73 @@ function addNewComment(content) {
     updateCommentCount();
 }
 
+
+      
+
+
 function updateCommentCount() {
     const countSpan = document.querySelector('.tweet-comment-btn span');
     const currentCount = parseFloat(countSpan.textContent);
     countSpan.textContent = (currentCount + 0.1).toFixed(1) + 'K';
 }
+
+// Main notification functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const notificationBtn = document.getElementById('notificationBtn');
+    const notificationContainer = document.querySelector('.notification-container');
+    let notificationCount = 5; // Example count
+
+    // Update notification badge count
+    function updateNotificationBadge() {
+        const badge = notificationBtn.querySelector('span');
+        badge.textContent = notificationCount > 0 ? notificationCount : '';
+        badge.style.display = notificationCount > 0 ? 'block' : 'none';
+    }
+
+    // Toggle notification panel
+    function toggleNotifications() {
+        notificationContainer.classList.toggle('active');
+        if (notificationContainer.classList.contains('active')) {
+            notificationCount = 0;
+            updateNotificationBadge();
+        }
+    }
+
+    // Close notifications when clicking outside
+    function handleClickOutside(event) {
+        if (!notificationContainer.contains(event.target) && 
+            !notificationBtn.contains(event.target)) {
+            notificationContainer.classList.remove('active');
+        }
+    }
+
+    // Filter notifications
+    function filterNotifications(category) {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        const notifications = document.querySelectorAll('.notification-item');
+        notifications.forEach(notification => {
+            if (category === 'all' || notification.classList.contains(category)) {
+                notification.style.display = 'flex';
+            } else {
+                notification.style.display = 'none';
+            }
+        });
+    }
+
+    // Event Listeners
+    notificationBtn.addEventListener('click', toggleNotifications);
+    document.addEventListener('click', handleClickOutside);
+    
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => filterNotifications(btn.dataset.filter));
+    });
+
+    // Initialize notification badge
+    updateNotificationBadge();
+});
 
 </script>
 </body>
